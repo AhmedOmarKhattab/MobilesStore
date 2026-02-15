@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var save = '@TempData["save"]';
+            var deleteMessage = '@TempData["delete"]';
+            if (save && save !== '') {
+                alertify.success(save);
+            }
+            if (deleteMessage && deleteMessage !== '') {
+                alertify.error(deleteMessage);
+            }
+        });
+    </script>
+}

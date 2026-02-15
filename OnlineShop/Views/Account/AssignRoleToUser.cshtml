@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Assign Role to User";
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg" style="border-radius: 15px; background-color: #f9f9f9; width: 50%; min-width: 300px;">
+        <div class="card-header" style="background-color: #00bcd4; color: #fff; border-radius: 15px 15px 0 0;">
+            <h2 class="card-title mb-0">@ViewData["Title"]</h2>
+        </div>
+        <div class="card-body">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="background-color: #d4edda; color: #155724;">
+                    @TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            else if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="background-color: #f8d7da; color: #721c24;">
+                    @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <form method="post" asp-action="AssignRoleToUser">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="userId" class="form-label" style="font-weight: bold; color: #333;">Select User</label>
+                        <select class="form-select" id="userId" name="userId" style="border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                            <option value="" selected disabled>Select a user</option>
+                            @foreach (var user in ViewBag.Users)
+                            {
+                                <option value="@user.Id">@user.UserName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="role" class="form-label" style="font-weight: bold; color: #333;">Select Role</label>
+                        <select class="form-select" id="role" name="role" style="border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                            <option value="" selected disabled>Select a role</option>
+                            @foreach (var role in ViewBag.Roles)
+                            {
+                                <option value="@role">@role</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-12 mb-3 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary" style="background-color: #00bcd4; border-color: #00bcd4;
+                            border-radius: 10px; padding: 8px 12px; font-size: 0.9rem; width: auto; max-width: 200px; transition: background-color 0.3s ease;">
+                            Assign Role
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-label {
+        font-size: 1.1rem;
+        color: #333;
+    }
+    .form-select {
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+        .form-select:focus {
+            border-color: #00bcd4;
+            box-shadow: 0 0 0 0.25rem rgba(0, 188, 212, 0.25);
+        }
+    .btn-primary {
+        background-color: #00bcd4;
+        border-color: #00bcd4;
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        border-radius: 10px;
+        width: auto; 
+        max-width: 200px; 
+        transition: background-color 0.3s ease;
+    }
+        .btn-primary:hover {
+            background-color: #0097a7;
+            border-color: #00838f;
+        }
+    .alert {
+        border-radius: 8px;
+    }
+    .alert-dismissible .btn-close {
+        background-color: transparent;
+        border: none;
+    }
+</style>
