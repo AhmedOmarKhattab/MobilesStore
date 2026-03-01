@@ -1,75 +1,639 @@
 ﻿@model List<Product>
 @{
-    ViewData["Title"] = "Cart";
+    ViewData["Title"] = "سلة التسوق";
 }
 
-<h2 class="text-center text-info my-4">Your Cart</h2>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+<style>
+    :root {
+        --primary: #6c63ff;
+        --primary-dark: #4f46e5;
+        --primary-soft: #ede9fe;
+        --accent: #f59e0b;
+        --success: #10b981;
+        --danger: #ef4444;
+        --surface: #f8f7ff;
+        --card: #ffffff;
+        --border: #e8e5f5;
+        --text: #1e1b33;
+        --muted: #7c7a93;
+        --sans: 'Cairo', sans-serif;
+        --radius: 20px;
+    }
+
+    body {
+        font-family: var(--sans);
+        background: var(--surface);
+        direction: rtl;
+        color: var(--text);
+    }
+
+    /* PAGE HEADER */
+    .cart-header {
+        background: linear-gradient(135deg, #1e1b33 0%, #2d2460 100%);
+        padding: 2.5rem 0 2rem;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2.5rem;
+    }
+
+        .cart-header::before {
+            content: 'CART';
+            position: absolute;
+            font-size: 10rem;
+            font-weight: 900;
+            color: rgba(255,255,255,0.03);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+    .cart-header-inner {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .cart-header-title {
+        color: white;
+        font-size: 1.8rem;
+        font-weight: 900;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+        .cart-header-title i {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+    .cart-count-badge {
+        background: var(--primary);
+        color: white;
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 0.3rem 0.9rem;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    /* EMPTY STATE */
+    .cart-empty {
+        max-width: 480px;
+        margin: 5rem auto;
+        text-align: center;
+        padding: 4rem 2rem;
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: 0 8px 40px rgba(108,99,255,0.08);
+        border: 1px solid var(--border);
+    }
+
+    .cart-empty-icon {
+        width: 100px;
+        height: 100px;
+        background: var(--primary-soft);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin: 0 auto 1.5rem;
+    }
+
+    .cart-empty h3 {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+    }
+
+    .cart-empty p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 1.75rem;
+    }
+
+    /* MAIN LAYOUT */
+    .cart-layout {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 1.5rem 4rem;
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    /* ITEMS CARD */
+    .cart-items-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 24px rgba(108,99,255,0.07);
+        overflow: hidden;
+    }
+
+    .cart-items-head {
+        padding: 1.25rem 1.75rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--surface);
+    }
+
+        .cart-items-head h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .cart-items-head span {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+    /* Each item row */
+    .cart-item {
+        display: grid;
+        grid-template-columns: 100px 1fr auto;
+        gap: 1.25rem;
+        padding: 1.5rem 1.75rem;
+        border-bottom: 1px solid var(--border);
+        align-items: center;
+        transition: background 0.2s ease;
+    }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item:hover {
+            background: #fdfcff;
+        }
+
+    .cart-item-img {
+        width: 100px;
+        height: 90px;
+        border-radius: 14px;
+        object-fit: cover;
+        background: var(--surface);
+        border: 1px solid var(--border);
+    }
+
+    .cart-item-body {
+        min-width: 0;
+    }
+
+    .cart-item-type {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--primary);
+        background: var(--primary-soft);
+        padding: 0.2rem 0.7rem;
+        border-radius: 50px;
+        display: inline-block;
+        margin-bottom: 0.4rem;
+    }
+
+    .cart-item-name {
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .cart-item-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        font-size: 0.8rem;
+        color: var(--muted);
+    }
+
+        .cart-item-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .cart-item-meta i {
+            color: var(--primary);
+            font-size: 0.75rem;
+        }
+
+    .color-dot-sm {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid white;
+        box-shadow: 0 0 0 1.5px rgba(0,0,0,0.12);
+        display: inline-block;
+    }
+
+    .cart-item-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .cart-item-price {
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: var(--primary);
+        white-space: nowrap;
+    }
+
+    .cart-item-qty {
+        font-size: 0.78rem;
+        color: var(--muted);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.25rem 0.65rem;
+        white-space: nowrap;
+    }
+
+    .cart-remove-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.45rem 0.9rem;
+        background: rgba(239,68,68,0.07);
+        color: var(--danger);
+        border: 1.5px solid rgba(239,68,68,0.2);
+        border-radius: 10px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        font-family: var(--sans);
+        text-decoration: none;
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+
+        .cart-remove-btn:hover {
+            background: rgba(239,68,68,0.12);
+            border-color: rgba(239,68,68,0.4);
+            color: var(--danger);
+            transform: translateY(-1px);
+        }
+
+    /* SUMMARY CARD */
+    .cart-summary {
+        background: var(--card);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 24px rgba(108,99,255,0.07);
+        overflow: hidden;
+        position: sticky;
+        top: 1.5rem;
+    }
+
+    .cart-summary-head {
+        background: linear-gradient(135deg, #1e1b33, #2d2460);
+        padding: 1.5rem 1.75rem;
+        color: white;
+    }
+
+        .cart-summary-head h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin: 0 0 0.25rem;
+        }
+
+        .cart-summary-head p {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            margin: 0;
+        }
+
+    .cart-summary-body {
+        padding: 1.5rem 1.75rem;
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.88rem;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid var(--border);
+        color: var(--muted);
+    }
+
+        .summary-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .summary-row strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+    .summary-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem;
+        background: var(--primary-soft);
+        border-radius: 14px;
+        margin: 1rem 0;
+        border: 1.5px solid rgba(108,99,255,0.15);
+    }
+
+    .summary-total-label {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    .summary-total-amount {
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: var(--primary);
+    }
+
+    .summary-shipping {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background: rgba(16,185,129,0.06);
+        border: 1px solid rgba(16,185,129,0.2);
+        border-radius: 12px;
+        font-size: 0.82rem;
+        color: var(--success);
+        font-weight: 700;
+        margin-bottom: 1.25rem;
+    }
+
+    .checkout-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+        border: none;
+        border-radius: 14px;
+        font-family: var(--sans);
+        font-size: 1rem;
+        font-weight: 800;
+        text-decoration: none;
+        transition: all 0.25s ease;
+        box-shadow: 0 6px 24px rgba(108,99,255,0.35);
+        margin-bottom: 0.75rem;
+    }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(108,99,255,0.45);
+            color: white;
+        }
+
+    .continue-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.85rem;
+        background: white;
+        color: var(--muted);
+        border: 1.5px solid var(--border);
+        border-radius: 14px;
+        font-family: var(--sans);
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+        .continue-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-soft);
+        }
+
+    /* trust icons */
+    .cart-trust {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border);
+        margin-top: 1.25rem;
+    }
+
+    .trust-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.68rem;
+        color: var(--muted);
+        font-weight: 600;
+        text-align: center;
+    }
+
+        .trust-item i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+    /* Mobile */
+    @@media (max-width: 900px) {
+        .cart-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .cart-summary {
+            position: static;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .cart-item {
+            grid-template-columns: 80px 1fr;
+        }
+
+        .cart-item-right {
+            grid-column: 1 / -1;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 72px;
+        }
+    }
+</style>
+
+<!-- Page Header -->
+<div class="cart-header">
+    <div class="cart-header-inner">
+        <h1 class="cart-header-title">
+            <i class="bi bi-cart3"></i>
+            سلة التسوق
+        </h1>
+        @if (Model.Count > 0)
+        {
+            <div class="cart-count-badge">
+                <i class="bi bi-bag-fill"></i>
+                @Model.Count @(Model.Count == 1 ? "منتج" : "منتجات")
+            </div>
+        }
+    </div>
+</div>
 
 @if (Model.Count == 0)
 {
-    <div class="alert alert-warning text-center" role="alert">
-        <h4>Your cart is empty!</h4>
-        <a asp-action="Index" asp-controller="Home" class="btn btn-primary mt-3">Continue Shopping</a>
+    <!-- Empty State -->
+    <div class="cart-empty">
+        <div class="cart-empty-icon">
+            <i class="bi bi-cart-x"></i>
+        </div>
+        <h3>سلتك فارغة!</h3>
+        <p>لم تضف أي منتجات بعد.<br>استعرض متجرنا واختر ما يعجبك.</p>
+        <a asp-action="Index" asp-controller="Home" class="checkout-btn" style="max-width:220px;margin:0 auto">
+            <i class="bi bi-shop"></i> تصفّح المنتجات
+        </a>
     </div>
 }
 else
 {
-    <div class="container mb-5">
-        <div class="table-responsive" style="max-height: 70vh; overflow-y: auto;">
-            <table class="table table-bordered table-hover align-middle shadow-sm">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
+    <div class="cart-layout">
 
-                        <th>Product Type</th>
-                        <th>Color</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td class="text-center">
-                                <img src="~/files/images/@item.Image" width="200px" height="150px" />
-                            </td>
-                            <td>@item.Name</td>
-                            <td>$@item.Price.ToString("0.00")</td>
-                            <td>@item.Quantity</td>
-                            <td>@item.ProductType?.Name </td>
-                            <td>@item.ProductColor</td>
-                            <td class="text-center">
-                                <a asp-action="Remove" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-danger">
-                                    <i class="fas fa-trash-alt"></i> Remove
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <!-- Items -->
+        <div class="cart-items-card">
+            <div class="cart-items-head">
+                <h3><i class="bi bi-bag-heart-fill me-2" style="color:var(--primary)"></i>منتجاتك المختارة</h3>
+                <span>@Model.Count منتج في السلة</span>
+            </div>
+
+            @foreach (var item in Model)
+            {
+                <div class="cart-item">
+                    <img src="~/files/images/@item.Image"
+                         alt="@item.Name"
+                         class="cart-item-img"
+                         onerror="this.src='/files/images/noimage.png'" />
+
+                    <div class="cart-item-body">
+                        <span class="cart-item-type">@(item.ProductType?.Name ?? "منتج")</span>
+                        <div class="cart-item-name">@item.Name</div>
+                        <div class="cart-item-meta">
+                            @if (!string.IsNullOrEmpty(item.ProductColor))
+                            {
+                                <span>
+                                    <span class="color-dot-sm" style="background:@item.ProductColor"></span>
+                                    @item.ProductColor
+                                </span>
+                            }
+                            <span><i class="bi bi-boxes"></i> الكمية: @item.Quantity</span>
+                            <span><i class="bi bi-tag-fill"></i> $@item.Price.ToString("0.00") / قطعة</span>
+                        </div>
+                    </div>
+
+                    <div class="cart-item-right">
+                        <div class="cart-item-price">$@((item.Price * item.Quantity).ToString("0.00"))</div>
+                        <div class="cart-item-qty">× @item.Quantity قطعة</div>
+                        <a asp-action="Remove" asp-controller="Home" asp-route-id="@item.Id"
+                           class="cart-remove-btn">
+                            <i class="bi bi-trash3-fill"></i> إزالة
+                        </a>
+                    </div>
+                </div>
+            }
         </div>
 
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Back to Home
-                </a>
+        <!-- Summary -->
+        <div class="cart-summary">
+            <div class="cart-summary-head">
+                <h3>ملخص الطلب</h3>
+                <p>مراجعة المنتجات والإجمالي</p>
             </div>
-            <div class="col-md-6 text-end">
-                <h4 class="text-muted">Total Amount</h4>
-                <h3 class="text-success">Grand Total: $@Model.Sum(e => e.Price*e.Quantity).ToString("0.00")</h3>
-                <a asp-action="Checkout" asp-controller="Order" class="btn btn-info mt-3">
-                    <i class="fas fa-credit-card"></i> Proceed to Checkout
+            <div class="cart-summary-body">
+
+                @foreach (var item in Model)
+                {
+                    <div class="summary-row">
+                        <span>@item.Name <small style="color:var(--muted)">×@item.Quantity</small></span>
+                        <strong>$@((item.Price * item.Quantity).ToString("0.00"))</strong>
+                    </div>
+                }
+
+                <div class="summary-total">
+                    <span class="summary-total-label">الإجمالي الكلي</span>
+                    <span class="summary-total-amount">$@Model.Sum(e => e.Price * e.Quantity).ToString("0.00")</span>
+                </div>
+
+                <div class="summary-shipping">
+                    <i class="bi bi-truck-front-fill"></i>
+                    الشحن مجاني على هذا الطلب 🎉
+                </div>
+
+                <a asp-action="Checkout" asp-controller="Order" class="checkout-btn">
+                    <i class="bi bi-credit-card-2-front-fill"></i>
+                    إتمام الشراء
                 </a>
+
+                <a asp-action="Index" asp-controller="Home" class="continue-btn">
+                    <i class="bi bi-arrow-right"></i>
+                    متابعة التسوق
+                </a>
+
+                <div class="cart-trust">
+                    <div class="trust-item">
+                        <i class="bi bi-lock-fill"></i>
+                        دفع آمن
+                    </div>
+                    <div class="trust-item">
+                        <i class="bi bi-shield-check"></i>
+                        ضمان الجودة
+                    </div>
+                    <div class="trust-item">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        إرجاع مجاني
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
 }
-
-
-
-
- 

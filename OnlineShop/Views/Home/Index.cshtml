@@ -81,7 +81,7 @@
     </div>
 </div>
 
-<!-- Stats Bar -->
+@* <!-- Stats Bar -->
 <div class="stats-bar">
     <div class="container">
         <div class="stats-grid">
@@ -106,7 +106,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> *@
 
 <!-- Shop by Category -->
 <div class="container my-5" dir="rtl">
@@ -135,6 +135,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Products Section -->
 <div id="products" class="container my-5" dir="rtl">
@@ -221,7 +222,102 @@
         }
 </div>
 
-<!-- Newsletter Section -->
+
+<div class="why-us-section" dir="rtl">
+    <div class="container">
+
+        <!-- Header -->
+        <div class="section-header text-center mb-5">
+            <span class="why-eyebrow">لماذا تختارنا؟</span>
+            <h2 class="section-title mt-2">نقدّم لك تجربة تسوّق<br><span class="why-highlight">لا مثيل لها</span></h2>
+            <div class="title-underline"></div>
+            <p class="text-muted mt-3" style="max-width:520px;margin:0 auto">نحن لسنا مجرد متجر — نحن شركاؤك في كل عملية شراء، من اللحظة الأولى حتى يصلك المنتج</p>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="why-grid">
+
+            <div class="why-card why-card-featured">
+                <div class="why-card-glow"></div>
+                <div class="why-icon-wrap">
+                    <i class="bi bi-shield-fill-check"></i>
+                </div>
+                <h3 class="why-title">ضمان الجودة ١٠٠٪</h3>
+                <p class="why-text">كل منتج يمر بفحص دقيق قبل وصوله إليك. نضمن جودة ما تشتريه أو نستبدله مجاناً بدون أي شروط.</p>
+                <div class="why-tag">الأكثر أهمية</div>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon-wrap">
+                    <i class="bi bi-truck"></i>
+                </div>
+                <h3 class="why-title">شحن سريع ومجاني</h3>
+                <p class="why-text">نوصّل طلباتك في غضون ٢-٥ أيام عمل. شحن مجاني على جميع الطلبات التي تتجاوز $٢٠٠.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon-wrap">
+                    <i class="bi bi-headset"></i>
+                </div>
+                <h3 class="why-title">دعم فني ٢٤/٧</h3>
+                <p class="why-text">فريقنا متاح على مدار الساعة للإجابة على استفساراتك وحل أي مشكلة تواجهها فوراً.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon-wrap">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                </div>
+                <h3 class="why-title">إرجاع مجاني ٣٠ يوماً</h3>
+                <p class="why-text">غير راضٍ عن مشترياتك؟ أعد المنتج خلال ٣٠ يوماً واسترد أموالك كاملة بدون تعقيدات.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon-wrap">
+                    <i class="bi bi-lock-fill"></i>
+                </div>
+                <h3 class="why-title">دفع آمن ومشفّر</h3>
+                <p class="why-text">بياناتك المالية محمية بتشفير SSL من أعلى مستوى. ندعم جميع طرق الدفع الموثوقة.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon-wrap">
+                    <i class="bi bi-tags-fill"></i>
+                </div>
+                <h3 class="why-title">أسعار تنافسية دائماً</h3>
+                <p class="why-text">نراقب الأسواق باستمرار لنضمن لك أفضل الأسعار. وجدت سعراً أقل؟ سنطابقه على الفور.</p>
+            </div>
+
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="why-stats">
+            <div class="why-stat">
+                <span class="why-stat-num">+١٠,٠٠٠</span>
+                <span class="why-stat-lbl">عميل سعيد</span>
+            </div>
+            <div class="why-stat-div"></div>
+            <div class="why-stat">
+                <span class="why-stat-num">+٥,٠٠٠</span>
+                <span class="why-stat-lbl">منتج أصلي</span>
+            </div>
+            <div class="why-stat-div"></div>
+            <div class="why-stat">
+                <span class="why-stat-num">٩٨٪</span>
+                <span class="why-stat-lbl">نسبة الرضا</span>
+            </div>
+            <div class="why-stat-div"></div>
+            <div class="why-stat">
+                <span class="why-stat-num">٥ ⭐</span>
+                <span class="why-stat-lbl">متوسط التقييم</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+@* <!-- Newsletter Section -->
 <div class="newsletter-section" dir="rtl">
     <div class="container">
         <div class="row align-items-center">
@@ -240,7 +336,7 @@
         </div>
     </div>
 </div>
-
+ *@
 <style>
     @@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap');
 
@@ -1017,6 +1113,233 @@
             margin: 0 auto;
         }
     }
+
+    <style >
+    /* ── WHY US ── */
+    .why-us-section {
+        padding: 5rem 0;
+        background: linear-gradient(180deg, #ffffff 0%, #f5f4ff 50%, #ffffff 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .why-us-section::before {
+        content: '';
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(99,102,241,0.05) 0%, transparent 70%);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
+
+    .why-eyebrow {
+        display: inline-block;
+        background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+        color: #6366f1;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 0.4rem 1.2rem;
+        border-radius: 50px;
+        border: 1px solid rgba(99,102,241,0.2);
+    }
+
+    .why-highlight {
+        color: #6366f1;
+        position: relative;
+    }
+
+        .why-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            right: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #a78bfa);
+            border-radius: 2px;
+        }
+
+    /* Grid */
+    .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-bottom: 3rem;
+    }
+
+    .why-card {
+        background: #ffffff;
+        border: 1.5px solid rgba(99,102,241,0.1);
+        border-radius: 20px;
+        padding: 2rem 1.75rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        text-align: right;
+    }
+
+        .why-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(99,102,241,0.3);
+            box-shadow: 0 16px 48px rgba(99,102,241,0.12);
+        }
+
+    /* Featured card */
+    .why-card-featured {
+        background: linear-gradient(145deg, #1e1b33, #2d2460);
+        border-color: transparent;
+        color: white;
+    }
+
+        .why-card-featured .why-title {
+            color: #f5f4f0;
+        }
+
+        .why-card-featured .why-text {
+            color: rgba(245,244,240,0.7);
+        }
+
+    .why-card-glow {
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(circle, rgba(108,99,255,0.4) 0%, transparent 70%);
+        border-radius: 50%;
+        top: -60px;
+        left: -60px;
+        pointer-events: none;
+    }
+
+    .why-icon-wrap {
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+        color: #6366f1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        margin-bottom: 1.25rem;
+        transition: transform 0.3s ease;
+    }
+
+    .why-card-featured .why-icon-wrap {
+        background: rgba(255,255,255,0.15);
+        color: #a78bfa;
+    }
+
+    .why-card:hover .why-icon-wrap {
+        transform: scale(1.1) rotate(-4deg);
+    }
+
+    .why-title {
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: #1e1b33;
+        margin-bottom: 0.6rem;
+        line-height: 1.3;
+    }
+
+    .why-text {
+        font-size: 0.87rem;
+        line-height: 1.75;
+        color: #6b7280;
+        margin: 0;
+    }
+
+    .why-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: rgba(167,139,250,0.2);
+        color: #c4b5fd;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.3rem 0.8rem;
+        border-radius: 50px;
+        margin-top: 1.25rem;
+        border: 1px solid rgba(167,139,250,0.25);
+    }
+
+    /* Stats */
+    .why-stats {
+        background: #1e1b33;
+        border-radius: 20px;
+        padding: 2rem 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        flex-wrap: wrap;
+    }
+
+    .why-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.75rem 3rem;
+        gap: 0.3rem;
+    }
+
+    .why-stat-num {
+        font-size: 1.9rem;
+        font-weight: 900;
+        color: #a78bfa;
+        line-height: 1;
+    }
+
+    .why-stat-lbl {
+        font-size: 0.8rem;
+        color: rgba(245,244,240,0.5);
+        font-weight: 500;
+    }
+
+    .why-stat-div {
+        width: 1px;
+        height: 40px;
+        background: rgba(255,255,255,0.1);
+    }
+
+    /* Mobile */
+    @@media (max-width: 900px) {
+        .why-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .why-stats {
+            padding: 1.5rem 1rem;
+        }
+
+        .why-stat {
+            padding: 0.75rem 1.25rem;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .why-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .why-stat-div {
+            display: none;
+        }
+
+        .why-stats {
+            gap: 0.5rem;
+        }
+
+        .why-stat {
+            padding: 0.5rem 1rem;
+        }
+    }
+
+
 </style>
 
 
