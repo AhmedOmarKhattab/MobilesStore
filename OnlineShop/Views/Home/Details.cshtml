@@ -1,6 +1,6 @@
 ﻿@model Product
 @{
-    ViewData["Title"] = "Product Details";
+    ViewData["Title"] = "تفاصيل المنتج";
 }
 
 @using OnlineShop.Helpers
@@ -12,100 +12,887 @@
     var productInCart = products?.FirstOrDefault(e => e.Id == Model.Id);
 }
 
-<h2 class="text-info">Product Details</h2>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-<form asp-action="AddToCart" method="post" enctype="multipart/form-data">
-    <div class="row border p-4 rounded shadow-sm bg-white">
-        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+<style>
+    :root {
+        --primary: #6c63ff;
+        --primary-dark: #4f46e5;
+        --primary-soft: #ede9fe;
+        --accent: #f59e0b;
+        --success: #10b981;
+        --danger: #ef4444;
+        --surface: #f8f7ff;
+        --card: #ffffff;
+        --border: #e8e5f5;
+        --text: #1e1b33;
+        --muted: #7c7a93;
+        --sans: 'Cairo', sans-serif;
+        --radius: 24px;
+    }
 
-        <div class="col-md-8">
-            <input type="hidden" asp-for="Id" />
+    body {
+        font-family: var(--sans);
+        background: var(--surface);
+        direction: rtl;
+        color: var(--text);
+    }
 
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label" asp-for="Name"></label>
-                <div class="col-sm-8">
-                    <input asp-for="Name" readonly class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label" asp-for="Description"></label>
-                <div class="col-sm-8">
-                    <textarea asp-for="Description" readonly class="form-control" rows="3"></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label" asp-for="Price"></label>
-                <div class="col-sm-8">
-                    <input asp-for="Price" readonly class="form-control" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-            </div>
+    /* BREADCRUMB */
+    .pd-crumb {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 1.5rem 1.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.82rem;
+        color: var(--muted);
+        flex-wrap: wrap;
+    }
 
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label" asp-for="ProductColor"></label>
-                <div class="col-sm-8">
-                    <input asp-for="ProductColor" readonly class="form-control" />
-                    <span asp-validation-for="ProductColor" class="text-danger"></span>
-                </div>
-            </div>
+        .pd-crumb a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
 
-            <!-- Hidden ProductTypeId -->
-            <input type="hidden" asp-for="ProductTypeId" />
+        .pd-crumb i {
+            font-size: 0.65rem;
+        }
 
-            <!-- Display Product Type Name -->
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label">Product Type</label>
-                <div class="col-sm-8">
-                    <input readonly value="@Model.ProductType?.Name" class="form-control" />
-                </div>
-            </div>
-                  <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label">Available Quantity</label>
-                <div class="col-sm-8">
-                    <input readonly  value="@Model.Quantity" class="form-control" />
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-4 col-form-label">Enter Quantity</label>
-                <div class="col-sm-8">
-                    <input type="number" name="quantity" class="form-control" />
-                </div>
-            </div>
+    /* WRAPPER */
+    .pd-page {
+        max-width: 1140px;
+        margin: 1.5rem auto 4rem;
+        padding: 0 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 
-            <div class="mb-3 row">
-                <div class="col-sm-4"></div>
-                <div class="col-sm-8">
-                    @if (productInCart != null)
+    /* MAIN CARD */
+    .pd-main {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: 0 8px 40px rgba(108,99,255,0.1);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 480px 1fr;
+    }
+
+    /* === IMAGE SIDE === */
+    .pd-visual {
+        background: linear-gradient(145deg, #f0eeff 0%, #e6f0ff 60%, #fdf4ff 100%);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2rem 2.5rem;
+        min-height: 560px;
+        border-left: 1px solid var(--border);
+    }
+
+        .pd-visual::before {
+            content: '';
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, rgba(108,99,255,0.1) 0%, transparent 65%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            pointer-events: none;
+        }
+
+    .pd-status-badges {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        z-index: 3;
+    }
+
+    .pd-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.38rem 0.9rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        backdrop-filter: blur(8px);
+    }
+
+    .badge-in {
+        background: rgba(16,185,129,0.12);
+        color: var(--success);
+        border: 1px solid rgba(16,185,129,0.3);
+    }
+
+    .badge-out {
+        background: rgba(239,68,68,0.12);
+        color: var(--danger);
+        border: 1px solid rgba(239,68,68,0.3);
+    }
+
+    .badge-low {
+        background: rgba(245,158,11,0.12);
+        color: var(--accent);
+        border: 1px solid rgba(245,158,11,0.3);
+    }
+
+    /* Wishlist btn */
+    .pd-wish {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        z-index: 3;
+    }
+
+        .pd-wish:hover {
+            color: var(--danger);
+            border-color: var(--danger);
+            transform: scale(1.1);
+        }
+
+    .pd-img-wrap {
+        position: relative;
+        z-index: 2;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pd-main-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 20px;
+        filter: drop-shadow(0 24px 48px rgba(108,99,255,0.22));
+        animation: imgFloat 5s ease-in-out infinite;
+        transition: transform 0.4s ease;
+    }
+
+        .pd-main-img:hover {
+            transform: scale(1.04);
+            animation-play-state: paused;
+        }
+
+    @@keyframes imgFloat {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-12px);
+        }
+    }
+
+    .pd-color-chip {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        background: white;
+        padding: 0.65rem 1.25rem;
+        border-radius: 50px;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+        z-index: 2;
+    }
+
+    .color-circle {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 0 0 2px rgba(0,0,0,0.12);
+        flex-shrink: 0;
+    }
+
+    .color-name {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    /* Thumbnail row (decorative) */
+    .pd-thumbs {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 1.5rem;
+        z-index: 2;
+    }
+
+    .pd-thumb {
+        width: 54px;
+        height: 54px;
+        border-radius: 12px;
+        background: white;
+        border: 2px solid var(--border);
+        overflow: hidden;
+        cursor: pointer;
+        transition: border-color 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .pd-thumb.active {
+            border-color: var(--primary);
+        }
+
+        .pd-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+    /* === INFO SIDE === */
+    .pd-info {
+        padding: 2.5rem 2.5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .pd-type-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: var(--primary-soft);
+        color: var(--primary);
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 0.35rem 1rem;
+        border-radius: 50px;
+        margin-bottom: 1rem;
+        width: fit-content;
+    }
+
+    .pd-name {
+        font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+        font-weight: 900;
+        color: var(--text);
+        line-height: 1.25;
+        margin-bottom: 0.6rem;
+    }
+
+    .pd-stars {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+    }
+
+        .pd-stars i {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .pd-stars .sep {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--border);
+            margin: 0 0.3rem;
+        }
+
+    .pd-price-block {
+        display: flex;
+        align-items: flex-end;
+        gap: 1rem;
+        padding: 1.5rem 0;
+        border-top: 1px dashed var(--border);
+        border-bottom: 1px dashed var(--border);
+        margin-bottom: 1.5rem;
+    }
+
+    .pd-price-main {
+        font-size: 2.6rem;
+        font-weight: 900;
+        color: var(--primary);
+        line-height: 1;
+    }
+
+        .pd-price-main sup {
+            font-size: 1.2rem;
+            font-weight: 700;
+            vertical-align: super;
+        }
+
+    .pd-stock-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.45rem 1rem;
+        border-radius: 50px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        margin-bottom: 0.4rem;
+    }
+
+    .stock-good {
+        background: rgba(16,185,129,0.1);
+        color: var(--success);
+    }
+
+    .stock-low {
+        background: rgba(245,158,11,0.1);
+        color: var(--accent);
+    }
+
+    .stock-none {
+        background: rgba(239,68,68,0.1);
+        color: var(--danger);
+    }
+
+    /* Info rows */
+    .pd-info-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .pd-info-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.85rem 1rem;
+        background: var(--surface);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        font-size: 0.9rem;
+        transition: border-color 0.2s;
+    }
+
+        .pd-info-row:hover {
+            border-color: rgba(108,99,255,0.2);
+        }
+
+    .pd-info-row-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--primary-soft);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+
+    .pd-info-row-body {
+        flex: 1;
+    }
+
+    .pd-info-row-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .pd-info-row-val {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-top: 0.1rem;
+    }
+
+    /* Description */
+    .pd-desc {
+        padding: 1rem 1.25rem;
+        background: var(--surface);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        font-size: 0.9rem;
+        line-height: 1.85;
+        color: var(--muted);
+        margin-bottom: 1.5rem;
+    }
+
+    /* Quantity picker */
+    .pd-qty-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .pd-qty-label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--text);
+        white-space: nowrap;
+    }
+
+    .pd-qty-picker {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .qty-btn {
+        width: 40px;
+        height: 42px;
+        border: none;
+        background: none;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary);
+        cursor: pointer;
+        transition: background 0.15s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .qty-btn:hover {
+            background: var(--primary-soft);
+        }
+
+    .qty-input {
+        width: 56px;
+        height: 42px;
+        border: none;
+        border-right: 1.5px solid var(--border);
+        border-left: 1.5px solid var(--border);
+        background: white;
+        text-align: center;
+        font-family: var(--sans);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text);
+        outline: none;
+    }
+
+        .qty-input::-webkit-inner-spin-button,
+        .qty-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
+
+    .pd-avail-note {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-right: auto;
+    }
+
+    /* CTA buttons */
+    .pd-cta {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .pd-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.95rem 1.5rem;
+        border-radius: 14px;
+        font-family: var(--sans);
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.25s ease;
+        cursor: pointer;
+        border: 2px solid transparent;
+        flex: 1;
+    }
+
+    .pd-btn-add {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+        box-shadow: 0 6px 24px rgba(108,99,255,0.35);
+    }
+
+        .pd-btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(108,99,255,0.45);
+            color: white;
+        }
+
+    .pd-btn-remove {
+        background: white;
+        color: var(--danger);
+        border-color: rgba(239,68,68,0.3);
+        box-shadow: 0 4px 16px rgba(239,68,68,0.1);
+    }
+
+        .pd-btn-remove:hover {
+            background: rgba(239,68,68,0.06);
+            transform: translateY(-2px);
+            color: var(--danger);
+        }
+
+    .pd-btn-back {
+        flex: 0 0 auto;
+        background: var(--surface);
+        color: var(--muted);
+        border-color: var(--border);
+    }
+
+        .pd-btn-back:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-soft);
+        }
+
+    /* Guarantees */
+    .pd-guarantees {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border);
+    }
+
+    .pd-guarantee {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.4rem;
+        padding: 0.75rem 0.5rem;
+        border-radius: 12px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        transition: all 0.2s;
+    }
+
+        .pd-guarantee:hover {
+            border-color: rgba(108,99,255,0.2);
+            box-shadow: 0 4px 16px rgba(108,99,255,0.06);
+        }
+
+        .pd-guarantee i {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .pd-guarantee p {
+            margin: 0;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .pd-guarantee span {
+            font-size: 0.65rem;
+            color: var(--muted);
+        }
+
+    /* Related section placeholder */
+    .pd-related-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+        .pd-related-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--border), transparent);
+            border-radius: 2px;
+        }
+
+    @@media (max-width: 960px) {
+        .pd-main {
+            grid-template-columns: 1fr;
+        }
+
+        .pd-visual {
+            min-height: 360px;
+            border-left: none;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pd-img-wrap {
+            width: 220px;
+            height: 220px;
+        }
+
+        .pd-info {
+            padding: 2rem 1.5rem;
+        }
+
+        .pd-guarantees {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .pd-guarantees {
+            grid-template-columns: 1fr;
+        }
+
+        .pd-cta {
+            flex-direction: column;
+        }
+
+        .pd-btn-back {
+            flex: 1;
+        }
+
+        .pd-qty-row {
+            flex-wrap: wrap;
+        }
+
+        .pd-avail-note {
+            width: 100%;
+        }
+    }
+</style>
+
+<!-- Breadcrumb -->
+<nav class="pd-crumb">
+    <a asp-action="Index" asp-controller="Home"><i class="bi bi-house-fill"></i> الرئيسية</a>
+    <i class="bi bi-chevron-left"></i>
+    <a asp-action="Index" asp-controller="Home">المنتجات</a>
+    <i class="bi bi-chevron-left"></i>
+    <span style="color:var(--text);font-weight:700">@Model.Name</span>
+</nav>
+
+<div class="pd-page">
+    <form asp-action="AddToCart" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger mb-3 px-1" style="font-size:.85rem"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ProductTypeId" />
+
+        <div class="pd-main">
+
+            <!-- ── VISUAL ── -->
+            <div class="pd-visual">
+
+                <div class="pd-status-badges">
+                    @if (Model.IsAvailable && Model.Quantity > 0)
                     {
-                        <button type="submit" class="btn btn-danger w-100" asp-action="Remove" asp-route-id="@Model.Id">Remove from Cart</button>
+                        <span class="pd-badge badge-in"><i class="bi bi-check-circle-fill"></i> متوفر</span>
                     }
                     else
                     {
-                        <button type="submit" class="btn btn-info w-100">Add to Cart</button>
+                        <span class="pd-badge badge-out"><i class="bi bi-x-circle-fill"></i> غير متوفر</span>
                     }
+                    @if (Model.Quantity > 0 && Model.Quantity <= 10)
+                    {
+                        <span class="pd-badge badge-low"><i class="bi bi-fire"></i> كمية محدودة</span>
+                    }
+                </div>
+
+                <button type="button" class="pd-wish" title="أضف للمفضلة" onclick="this.style.color='#ef4444';this.style.borderColor='#ef4444'">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+
+                <div class="pd-img-wrap">
+                    <img src="~/files/images/@Model.Image"
+                         alt="@Model.Name"
+                         class="pd-main-img"
+                         onerror="this.src='/files/images/noimage.png'" />
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.ProductColor))
+                {
+                    <div class="pd-color-chip">
+                        <div class="color-circle" style="background-color: @Model.ProductColor"></div>
+                        <span class="color-name">@Model.ProductColor</span>
+                    </div>
+                }
+
+                <!-- decorative thumbnails -->
+                <div class="pd-thumbs">
+                    <div class="pd-thumb active">
+                        <img src="~/files/images/@Model.Image" alt="" onerror="this.src='/files/images/noimage.png'" />
+                    </div>
+                    <div class="pd-thumb">
+                        <img src="~/files/images/@Model.Image" alt="" onerror="this.src='/files/images/noimage.png'" style="filter:saturate(0.5)" />
+                    </div>
+                    <div class="pd-thumb">
+                        <img src="~/files/images/@Model.Image" alt="" onerror="this.src='/files/images/noimage.png'" style="filter:hue-rotate(40deg)" />
+                    </div>
                 </div>
             </div>
 
-            <div class="mb-3">
-                <a asp-action="Index" class="btn btn-success">Back to List</a>
+            <!-- ── INFO ── -->
+            <div class="pd-info">
+
+                <div class="pd-type-pill">
+                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                    @(Model.ProductType?.Name ?? "منتج")
+                </div>
+
+                <h1 class="pd-name">@Model.Name</h1>
+
+                <div class="pd-stars">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                    <span>٤.٥</span>
+                    <div class="sep"></div>
+                    <span>١٢٨ تقييم</span>
+                    <div class="sep"></div>
+                    <span style="color:var(--success);font-weight:600">٩٦٪ راضون</span>
+                </div>
+
+                <!-- Price -->
+                <div class="pd-price-block">
+                    <div>
+                        <div class="pd-price-main">
+                            <sup>$</sup>@Model.Price.ToString("0.00")
+                        </div>
+                    </div>
+                    <div style="margin-bottom:.3rem">
+                        @if (Model.Quantity > 10)
+                        {
+                            <div class="pd-stock-tag stock-good">
+                                <i class="bi bi-box-seam-fill"></i> @Model.Quantity قطعة في المخزون
+                            </div>
+                        }
+                        else if (Model.Quantity > 0)
+                        {
+                            <div class="pd-stock-tag stock-low">
+                                <i class="bi bi-exclamation-triangle-fill"></i> @Model.Quantity متبقية فقط!
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="pd-stock-tag stock-none">
+                                <i class="bi bi-x-circle-fill"></i> نفد من المخزون
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Description -->
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <div class="pd-desc">
+                        <i class="bi bi-quote" style="color:var(--primary);margin-left:.35rem;font-size:1rem"></i>
+                        @Model.Description
+                    </div>
+                }
+
+                <!-- Info rows -->
+                <div class="pd-info-rows">
+                    @if (!string.IsNullOrEmpty(Model.ProductColor))
+                    {
+                        <div class="pd-info-row">
+                            <div class="pd-info-row-icon"><i class="bi bi-palette-fill"></i></div>
+                            <div class="pd-info-row-body">
+                                <div class="pd-info-row-label">اللون</div>
+                                <div class="pd-info-row-val" style="display:flex;align-items:center;gap:.5rem">
+                                    <span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:@Model.ProductColor;border:2px solid #fff;box-shadow:0 0 0 1.5px rgba(0,0,0,.12)"></span>
+                                    @Model.ProductColor
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="pd-info-row">
+                        <div class="pd-info-row-icon"><i class="bi bi-tag-fill"></i></div>
+                        <div class="pd-info-row-body">
+                            <div class="pd-info-row-label">نوع المنتج</div>
+                            <div class="pd-info-row-val">@(Model.ProductType?.Name ?? "—")</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quantity picker -->
+                <div class="pd-qty-row">
+                    <span class="pd-qty-label">الكمية المطلوبة:</span>
+                    <div class="pd-qty-picker">
+                        <button type="button" class="qty-btn" onclick="var i=document.getElementById('qty');if(+i.value>1)i.value=+i.value-1">−</button>
+                        <input type="number" id="qty" name="quantity" class="qty-input" value="1" min="1" max="@Model.Quantity" />
+                        <button type="button" class="qty-btn" onclick="var i=document.getElementById('qty');if(+i.value<@Model.Quantity)i.value=+i.value+1">+</button>
+                    </div>
+                    <span class="pd-avail-note">الكمية المتاحة: <strong style="color:var(--text)">@Model.Quantity</strong></span>
+                </div>
+
+                <!-- CTA -->
+                <div class="pd-cta">
+                    @if (productInCart != null)
+                    {
+                        <button type="submit" class="pd-btn pd-btn-remove"
+                                asp-action="Remove" asp-route-id="@Model.Id">
+                            <i class="bi bi-cart-x-fill"></i> إزالة من السلة
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="pd-btn pd-btn-add">
+                            <i class="bi bi-cart-plus-fill"></i> أضف إلى السلة
+                        </button>
+                    }
+                    <a asp-action="Index" class="pd-btn pd-btn-back">
+                        <i class="bi bi-arrow-right"></i> رجوع
+                    </a>
+                </div>
+
+                <!-- Guarantees -->
+                <div class="pd-guarantees">
+                    <div class="pd-guarantee">
+                        <i class="bi bi-truck"></i>
+                        <p>شحن سريع</p>
+                        <span>٢-٥ أيام عمل</span>
+                    </div>
+                    <div class="pd-guarantee">
+                        <i class="bi bi-shield-check"></i>
+                        <p>ضمان سنة</p>
+                        <span>على جميع المنتجات</span>
+                    </div>
+                    <div class="pd-guarantee">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        <p>إرجاع مجاني</p>
+                        <span>خلال ٣٠ يوماً</span>
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <div class="col-md-4 text-center">
-            <img src="~/files/images/@Model.Image" class="img-fluid mb-3 border rounded" style="height: 250px; object-fit: cover;" alt="Product Image" />
-            @if (Model.IsAvailable)
-            {
-                <img src="~/files/images/instock-logo.png" class="img-fluid" style="max-width: 200px;" alt="In Stock" />
-            }
-            else
-            {
-                <img src="~/files/images/notinstock.jpg" class="img-fluid" style="max-width: 200px;" alt="Out of Stock" />
-            }
-        </div>
-    </div>
-</form>
+    </form>
+</div>
 
 @section Scripts {
     @{
