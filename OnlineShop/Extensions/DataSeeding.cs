@@ -54,7 +54,7 @@ namespace BrightMinds.Api.Extensions
             }
           
 
-                if (!context.Products.Any())
+                if (context.Products.Any())
                 {
                     var tagIds = await context.specialTags
                         .Select(t => t.Id)

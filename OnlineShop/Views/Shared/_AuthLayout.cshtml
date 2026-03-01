@@ -13,7 +13,8 @@
     <h1>@ViewData["Title"]</h1>
    @RenderBody()
   </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
     @await RenderSectionAsync("ValidationSection", required: false)
 </body>
   

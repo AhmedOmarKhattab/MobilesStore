@@ -583,3 +583,4 @@ D:\projects\C# projects\Core Projects\OnlineShop\OnlineShop\OnlineShop\OnlineSho
 D:\projects\C# projects\Core Projects\OnlineShop\OnlineShop\OnlineShop\OnlineShop\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
 D:\projects\C# projects\Core Projects\OnlineShop\OnlineShop\OnlineShop\OnlineShop\obj\Debug\net8.0\staticwebassets.build.json.cache
 D:\projects\C# projects\Core Projects\OnlineShop\OnlineShop\OnlineShop\OnlineShop\bin\Debug\net8.0\libman.json
+D:\projects\C# projects\Core Projects\OnlineShop\OnlineShop\OnlineShop\OnlineShop\obj\Debug\net8.0\OnlineShop.sourcelink.json

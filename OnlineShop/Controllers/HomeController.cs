@@ -25,7 +25,7 @@ namespace OnlineShop.Controllers
 		public IActionResult Index(int? page)
 		{
             var product = dbContext.Products.Include(c => c.ProductType).Include(c => c.SpecialTag)
-                .ToList().ToPagedList(page ?? 1, 9);
+                .ToList().ToPagedList(page ?? 1, 12);
 			return View(product);
 		}
 

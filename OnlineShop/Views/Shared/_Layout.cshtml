@@ -15,7 +15,7 @@
     }
     count = products.Count();
 
-    var Name = User.Identity?.Name ?? "Guest";
+    var Name = User.Identity?.Name ?? "زائر";
 
     var user = await userManager.FindByNameAsync(Name);
 
@@ -23,67 +23,442 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - OnlineShop</title>
-
-    <!-- Bootstrap CSS -->
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/font-awesome/css/all.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
- *@
-   @*  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/default.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
- *@
-  @*   <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
-
-    <link rel="stylesheet" href="~/lib/alertifyjs/css/alertify.min.css" />
-    <link rel="stylesheet" href="~/lib/alertifyjs/css/themes/default.min.css" />
-
-    <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="~/lib/datatables-buttons/css/buttons.dataTables.min.css" />
-
-    <link rel="stylesheet" href="~/css/inter.css" />
- *@
+    <title>@ViewData["Title"] - متجرنا</title>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
     <link rel="stylesheet" href="~/font-awesome/css/all.min.css" />
-
     <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
-
-
     <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.min.css" />
-   <link rel="stylesheet" href="~/lib/datatables-buttons/css/buttons.dataTables.min.css" />
-
-   <link rel="stylesheet" href="~/lib/alertifyjs/css/alertify.min.css" />
-   <link rel="stylesheet" href="~/lib/alertifyjs/css/themes/default.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables-buttons/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="~/lib/alertifyjs/css/alertify.min.css" />
+    <link rel="stylesheet" href="~/lib/alertifyjs/css/themes/default.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
     <style>
-        @@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #4f46e5;
+            --dark: #0d1117;
+            --text: #1f2937;
+            --text-muted: #6b7280;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            direction: rtl;
+            background: #f8f9ff;
+        }
+
+        /* ─── NAVBAR ─── */
+        .modern-navbar {
+            background: linear-gradient(135deg, #6c63ff 0%, #4f46e5 100%);
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white !important;
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-decoration: none;
+            font-family: 'Cairo', sans-serif;
+        }
+
+            .navbar-brand i {
+                font-size: 1.6rem;
+                background: rgba(255,255,255,0.2);
+                width: 42px;
+                height: 42px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 12px;
+                backdrop-filter: blur(10px);
+            }
+
+        .navbar-toggler {
+            border: 2px solid rgba(255,255,255,0.4);
+            padding: 0.4rem 0.6rem;
+            border-radius: 10px;
+        }
+
+        .navbar-toggler-icon {
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.85) !important;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 0.9rem !important;
+            border-radius: 10px;
+            transition: var(--transition);
+            font-family: 'Cairo', sans-serif;
+        }
+
+            .nav-link:hover, .nav-link.active {
+                color: white !important;
+                background: rgba(255,255,255,0.15);
+            }
+
+        /* Dropdown */
+        .dropdown-menu {
+            border: none;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            padding: 0.5rem;
+            min-width: 200px;
+            left: auto;
+            right: 0;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            color: var(--text);
+            transition: var(--transition);
+            font-family: 'Cairo', sans-serif;
+        }
+
+            .dropdown-item:hover {
+                background: rgba(108, 99, 255, 0.08);
+                color: var(--primary);
+            }
+
+        /* Cart */
+        .cart-link {
+            position: relative;
+            padding: 0.5rem 0.75rem !important;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #ef4444;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        /* User avatar */
+        .user-avatar {
+            width: 34px;
+            height: 34px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .user-menu-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Register Button */
+        .btn-register {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 50px !important;
+            padding: 0.45rem 1.2rem !important;
+        }
+
+            .btn-register:hover {
+                background: white !important;
+                color: var(--primary) !important;
+            }
+
+        /* ─── FOOTER ─── */
+        .modern-footer {
+            background: linear-gradient(135deg, #0d1117, #1f2937);
+            color: rgba(255,255,255,0.85);
+            padding: 4rem 0 0;
+            margin-top: 5rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            font-family: 'Cairo', sans-serif;
+        }
+
+            .footer-brand i {
+                background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+                width: 46px;
+                height: 46px;
+                border-radius: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.4rem;
+            }
+
+        .footer-description {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+            .social-link:hover {
+                background: var(--primary);
+                border-color: var(--primary);
+                color: white;
+                transform: translateY(-3px);
+            }
+
+        .footer-section-title {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+            .footer-link i {
+                font-size: 0.7rem;
+                color: var(--primary);
+            }
+
+            .footer-link:hover {
+                color: white;
+                padding-right: 6px;
+            }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(108,99,255,0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: rgba(255,255,255,0.85);
+            font-weight: 600;
+            margin-bottom: 0.1rem;
+        }
+
+        /* Footer Newsletter */
+        .footer-newsletter {
+            margin-top: 1.5rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .newsletter-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .newsletter-text {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.82rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            flex-direction: row-reverse;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50px;
+            color: white;
+            padding: 0.65rem 1.1rem;
+            font-size: 0.85rem;
+            text-align: right;
+            font-family: 'Cairo', sans-serif;
+        }
+
+            .newsletter-input::placeholder {
+                color: rgba(255,255,255,0.4);
+            }
+
+            .newsletter-input:focus {
+                outline: none;
+                border-color: var(--primary);
+                background: rgba(255,255,255,0.12);
+            }
+
+        .newsletter-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+            .newsletter-btn:hover {
+                transform: translateX(-3px);
+                box-shadow: 0 6px 20px rgba(108,99,255,0.4);
+            }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+
+        .copyright-text {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.82rem;
+            transition: var(--transition);
+        }
+
+            .footer-bottom-links a:hover {
+                color: white;
+            }
+
+        .footer-divider {
+            color: rgba(255,255,255,0.2);
+            margin: 0 0.5rem;
+        }
+
+        /* Mobile */
+        @@media (max-width: 992px) {
+            .navbar-collapse {
+                background: rgba(79, 70, 229, 0.98);
+                backdrop-filter: blur(20px);
+                border-radius: 16px;
+                margin-top: 0.75rem;
+                padding: 1rem;
+            }
+
+            .navbar-nav.gap-2 {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.5rem !important;
+                margin-top: 0.5rem;
+                padding-top: 0.5rem;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Modern Navbar -->
+    <!-- Navbar -->
     <header>
         <nav class="navbar navbar-expand-lg modern-navbar">
             <div class="container-fluid px-3 px-lg-4">
                 <!-- Brand -->
                 <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
                     <i class="bi bi-shop"></i>
-                    <span class="d-none d-sm-inline">OnlineShop</span>
+                    <span class="d-none d-sm-inline">متجرنا</span>
                 </a>
 
                 <!-- Mobile Toggle -->
@@ -93,17 +468,17 @@
 
                 <!-- Navigation -->
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-3 mt-lg-0">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mt-3 mt-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index">
                                 <i class="bi bi-house-door"></i>
-                                <span>Home</span>
+                                <span>الرئيسية</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Privacy">
                                 <i class="bi bi-shield-check"></i>
-                                <span>Privacy</span>
+                                <span>سياسة الخصوصية</span>
                             </a>
                         </li>
 
@@ -112,38 +487,38 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                     <i class="bi bi-gear-fill"></i>
-                                    <span>Admin</span>
+                                    <span>الإدارة</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" asp-controller="ProductType" asp-action="Index">
                                             <i class="bi bi-tags-fill text-primary"></i>
-                                            <span>Product Types</span>
+                                            <span>أنواع المنتجات</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" asp-controller="SpecialTag" asp-action="Index">
                                             <i class="bi bi-bookmark-star-fill text-warning"></i>
-                                            <span>Special Tags</span>
+                                            <span>التصنيفات المميزة</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" asp-controller="Order" asp-action="Index">
                                             <i class="bi bi-receipt text-success"></i>
-                                            <span>Orders</span>
+                                            <span>الطلبات</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" asp-controller="Product" asp-action="Index">
                                             <i class="bi bi-box-seam-fill text-info"></i>
-                                            <span>Products</span>
+                                            <span>المنتجات</span>
                                         </a>
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <a class="dropdown-item" asp-controller="Account" asp-action="AssignRoleToUser">
                                             <i class="bi bi-people-fill text-danger"></i>
-                                            <span>User Roles</span>
+                                            <span>أدوار المستخدمين</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -153,7 +528,7 @@
 
                     <!-- Right Side Nav -->
                     <ul class="navbar-nav gap-2">
-                        <!-- Shopping Cart -->
+                        <!-- Cart -->
                         <li class="nav-item">
                             <a class="nav-link cart-link" asp-controller="Home" asp-action="Cart">
                                 <i class="bi bi-cart3 fs-4"></i>
@@ -166,7 +541,6 @@
 
                         @if (User.Identity?.IsAuthenticated ?? false)
                         {
-                            <!-- User Dropdown -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle user-menu-btn" href="#" role="button" data-bs-toggle="dropdown">
                                     <div class="user-avatar">@Name.Substring(0, 1).ToUpper()</div>
@@ -176,26 +550,26 @@
                                     <li>
                                         <a class="dropdown-item" href="#">
                                             <i class="bi bi-person-circle text-primary"></i>
-                                            <span>My Profile</span>
+                                            <span>ملفي الشخصي</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" asp-controller="Order" asp-action="UserOrders">
                                             <i class="bi bi-bag-check-fill text-success"></i>
-                                            <span>My Orders</span>
+                                            <span>طلباتي</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#">
                                             <i class="bi bi-heart-fill text-danger"></i>
-                                            <span>Wishlist</span>
+                                            <span>المفضلة</span>
                                         </a>
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout">
                                             <i class="bi bi-box-arrow-right"></i>
-                                            <span>Logout</span>
+                                            <span>تسجيل الخروج</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -206,13 +580,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Account" asp-action="Login">
                                     <i class="bi bi-box-arrow-in-right"></i>
-                                    <span>Login</span>
+                                    <span>تسجيل الدخول</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link btn-register" asp-controller="Account" asp-action="Register">
                                     <i class="bi bi-person-plus-fill"></i>
-                                    <span>Register</span>
+                                    <span>إنشاء حساب</span>
                                 </a>
                             </li>
                         }
@@ -227,7 +601,7 @@
         @RenderBody()
     </main>
 
-    <!-- Modern Footer -->
+    <!-- Footer -->
     <footer class="modern-footer">
         <div class="container">
             <div class="row g-4">
@@ -236,23 +610,23 @@
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <h3 class="footer-brand">
                         <i class="bi bi-shop"></i>
-                        <span>OnlineShop</span>
+                        <span>متجرنا</span>
                     </h3>
                     <p class="footer-description">
-                        Your trusted destination for quality products at unbeatable prices.
-                        Discover the latest trends, gadgets, and everything in between!
+                        وجهتك الموثوقة للمنتجات عالية الجودة بأسعار لا تُقاوم.
+                        اكتشف أحدث الهواتف والإكسسوارات وكل ما تحتاجه!
                     </p>
                     <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">
+                        <a href="#" class="social-link" aria-label="فيسبوك">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
+                        <a href="#" class="social-link" aria-label="تويتر">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
+                        <a href="#" class="social-link" aria-label="إنستغرام">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
+                        <a href="#" class="social-link" aria-label="لينكدإن">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
@@ -260,61 +634,61 @@
 
                 <!-- Quick Links -->
                 <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="footer-section-title">Quick Links</h5>
+                    <h5 class="footer-section-title">روابط سريعة</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2">
                             <a href="#" class="footer-link">
-                                <i class="bi bi-chevron-right"></i>
-                                <span>Shop All</span>
+                                <i class="bi bi-chevron-left"></i>
+                                <span>تسوّق الكل</span>
                             </a>
                         </li>
                         <li class="mb-2">
                             <a href="#" class="footer-link">
-                                <i class="bi bi-chevron-right"></i>
-                                <span>About Us</span>
+                                <i class="bi bi-chevron-left"></i>
+                                <span>من نحن</span>
                             </a>
                         </li>
                         <li class="mb-2">
                             <a href="#" class="footer-link">
-                                <i class="bi bi-chevron-right"></i>
-                                <span>Contact</span>
+                                <i class="bi bi-chevron-left"></i>
+                                <span>تواصل معنا</span>
                             </a>
                         </li>
                         <li class="mb-2">
                             <a href="#" class="footer-link">
-                                <i class="bi bi-chevron-right"></i>
-                                <span>FAQ</span>
+                                <i class="bi bi-chevron-left"></i>
+                                <span>الأسئلة الشائعة</span>
                             </a>
                         </li>
                     </ul>
                 </div>
 
-                <!-- Customer Service -->
+                <!-- Support -->
                 <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="footer-section-title">Support</h5>
+                    <h5 class="footer-section-title">الدعم</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2">
                             <a href="#" class="footer-link">
-                                <i class="bi bi-chevron-right"></i>
-                                <span>Returns & Refunds</span>
+                                <i class="bi bi-chevron-left"></i>
+                                <span>الإرجاع والاسترداد</span>
                             </a>
                         </li>
                         <li class="mb-2">
                             <a href="#" class="footer-link">
-                                <i class="bi bi-chevron-right"></i>
-                                <span>Shipping Info</span>
+                                <i class="bi bi-chevron-left"></i>
+                                <span>معلومات الشحن</span>
                             </a>
                         </li>
                         <li class="mb-2">
                             <a href="#" class="footer-link">
-                                <i class="bi bi-chevron-right"></i>
-                                <span>Track Order</span>
+                                <i class="bi bi-chevron-left"></i>
+                                <span>تتبع الطلب</span>
                             </a>
                         </li>
                         <li class="mb-2">
                             <a href="#" class="footer-link">
-                                <i class="bi bi-chevron-right"></i>
-                                <span>Help Center</span>
+                                <i class="bi bi-chevron-left"></i>
+                                <span>مركز المساعدة</span>
                             </a>
                         </li>
                     </ul>
@@ -322,14 +696,14 @@
 
                 <!-- Contact & Newsletter -->
                 <div class="col-lg-4 col-md-6">
-                    <h5 class="footer-section-title">Get In Touch</h5>
+                    <h5 class="footer-section-title">تواصل معنا</h5>
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="bi bi-geo-alt-fill"></i>
                         </div>
                         <div>
-                            <strong>Address</strong>
-                            123 Market St, New York, NY 10001
+                            <strong>العنوان</strong>
+                            شارع التحرير، القاهرة، مصر
                         </div>
                     </div>
                     <div class="contact-item">
@@ -337,7 +711,7 @@
                             <i class="bi bi-envelope-fill"></i>
                         </div>
                         <div>
-                            <strong>Email</strong>
+                            <strong>البريد الإلكتروني</strong>
                             support@onlineshop.com
                         </div>
                     </div>
@@ -346,8 +720,8 @@
                             <i class="bi bi-telephone-fill"></i>
                         </div>
                         <div>
-                            <strong>Phone</strong>
-                            +1 (234) 567-8900
+                            <strong>الهاتف</strong>
+                            +20 100 000 0000
                         </div>
                     </div>
 
@@ -355,11 +729,11 @@
                     <div class="footer-newsletter">
                         <h6 class="newsletter-title">
                             <i class="bi bi-envelope-heart-fill"></i>
-                            <span>Newsletter</span>
+                            <span>النشرة البريدية</span>
                         </h6>
-                        <p class="newsletter-text">Subscribe for exclusive deals and updates</p>
+                        <p class="newsletter-text">اشترك للحصول على عروض حصرية وآخر المستجدات</p>
                         <form class="newsletter-form" id="newsletterForm">
-                            <input type="email" class="newsletter-input form-control" placeholder="Your email" required>
+                            <input type="email" class="newsletter-input form-control" placeholder="بريدك الإلكتروني" required>
                             <button type="submit" class="newsletter-btn">
                                 <i class="bi bi-send-fill"></i>
                             </button>
@@ -371,16 +745,16 @@
             <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <div class="row align-items-center">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        <p class="copyright-text">© 2025 OnlineShop. All Rights Reserved.</p>
+                    <div class="col-md-6 text-center text-md-end mb-3 mb-md-0">
+                        <p class="copyright-text">© 2025 متجرنا. جميع الحقوق محفوظة.</p>
                     </div>
                     <div class="col-md-6">
-                        <div class="footer-bottom-links text-center text-md-end">
-                            <a href="#">Privacy Policy</a>
+                        <div class="footer-bottom-links text-center text-md-start">
+                            <a href="#">سياسة الخصوصية</a>
                             <span class="footer-divider">•</span>
-                            <a href="#">Terms of Service</a>
+                            <a href="#">شروط الخدمة</a>
                             <span class="footer-divider">•</span>
-                            <a href="#">Cookie Policy</a>
+                            <a href="#">سياسة الكوكيز</a>
                         </div>
                     </div>
                 </div>
@@ -389,26 +763,19 @@
     </footer>
 
     <!-- Scripts -->
-
     <script src="~/lib/jquery/jquery.min.js"></script>
-
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
-
     <script src="~/lib/datatables-buttons/js/dataTables.buttons.min.js"></script>
     <script src="~/lib/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="~/lib/datatables-buttons/js/buttons.print.min.js"></script>
-
     <script src="~/lib/jszip/jszip.min.js"></script>
-
     <script src="~/lib/pdfmake/pdfmake.min.js"></script>
     <script src="~/lib/pdfmake/vfs_fonts.js"></script>
-
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     <script>
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -423,18 +790,11 @@
         });
 
         // Navbar shadow on scroll
-        let lastScroll = 0;
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.modern-navbar');
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll > 50) {
-                navbar.style.boxShadow = '0 10px 30px rgba(99, 102, 241, 0.3)';
-            } else {
-                navbar.style.boxShadow = '0 4px 20px rgba(99, 102, 241, 0.2)';
-            }
-
-            lastScroll = currentScroll;
+            navbar.style.boxShadow = window.pageYOffset > 50
+                ? '0 10px 30px rgba(99, 102, 241, 0.3)'
+                : '0 4px 20px rgba(99, 102, 241, 0.2)';
         });
 
         // Close mobile menu on link click
@@ -442,9 +802,7 @@
             link.addEventListener('click', () => {
                 const navbarCollapse = document.querySelector('.navbar-collapse');
                 const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                if (bsCollapse && window.innerWidth < 992) {
-                    bsCollapse.hide();
-                }
+                if (bsCollapse && window.innerWidth < 992) bsCollapse.hide();
             });
         });
 
@@ -453,17 +811,15 @@
             e.preventDefault();
             const email = this.querySelector('input[type="email"]').value;
             if (email) {
-                alert('Thank you for subscribing! Check your email for confirmation.');
+                alert('شكراً على اشتراكك! تحقق من بريدك الإلكتروني للتأكيد.');
                 this.reset();
             }
         });
 
-        // Add active class to current page
+        // Active nav link
         const currentPath = window.location.pathname;
         document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-            if (link.getAttribute('href') === currentPath) {
-                link.classList.add('active');
-            }
+            if (link.getAttribute('href') === currentPath) link.classList.add('active');
         });
     </script>
 
