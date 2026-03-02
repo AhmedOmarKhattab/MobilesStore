@@ -48,11 +48,34 @@ namespace BrightMinds.Api.Extensions
         Name = "إكسسوارات"
     }
 };
+           
+
+
                 await context.AddRangeAsync(productTypes);
                 await context.SaveChangesAsync();
 
             }
-          
+          if(!context.productBrands.Any())
+            {
+                var brands = new List<ProductBrand>()
+                {
+                    new ProductBrand()
+                {
+                    Name="Samsung"
+                },
+                    new ProductBrand()
+                {
+                    Name="IPhone"
+                },
+                    new ProductBrand()
+                {
+                    Name="Oppo "
+                }
+                };
+
+                await context.AddRangeAsync(brands);    
+                await context.SaveChangesAsync();
+            }
 
                 if (!context.Products.Any())
                 {
@@ -60,7 +83,12 @@ namespace BrightMinds.Api.Extensions
                         .Select(t => t.Id)
                         .ToListAsync();
 
-                    var typeIds = await context.ProductTypes
+                var brandIds = await context.specialTags
+                        .Select(t => t.Id)
+                        .ToListAsync();
+
+
+                var typeIds = await context.ProductTypes
                         .Select(t => t.Id)
                         .ToListAsync();
 
@@ -76,6 +104,8 @@ namespace BrightMinds.Api.Extensions
             ProductColor = "تيتانيوم أسود",
             IsAvailable = true,
             ProductTypeId = typeIds[random.Next(typeIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
             SpecialTagId = tagIds[random.Next(tagIds.Count)],
             Description = "هاتف آبل الرائد بشاشة 6.7 بوصة ومعالج A17 Pro.",
             Quantity = 20
@@ -83,16 +113,79 @@ namespace BrightMinds.Api.Extensions
 
         new Product
         {
-            Name = "Samsung Galaxy S24 Ultra",
+            Name = "iPhone 15 Pro Max",
+            Price = 1199,
+            Image = "iphone15promax.webp",
+            ProductColor = "تيتانيوم أسود",
+            IsAvailable = true,
+            ProductTypeId = typeIds[random.Next(typeIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
+            SpecialTagId = tagIds[random.Next(tagIds.Count)],
+            Description = "هاتف آبل الرائد بشاشة 6.7 بوصة ومعالج A17 Pro.",
+            Quantity = 20
+        },
+new Product
+        {
+            Name = "iPhone 15 Pro Max",
+            Price = 1199,
+            Image = "iphone15promax.webp",
+            ProductColor = "تيتانيوم أسود",
+            IsAvailable = true,
+            ProductTypeId = typeIds[random.Next(typeIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
+            SpecialTagId = tagIds[random.Next(tagIds.Count)],
+            Description = "هاتف آبل الرائد بشاشة 6.7 بوصة ومعالج A17 Pro.",
+            Quantity = 20
+        },
+new Product
+        {
+            Name = "iPhone 16 Pro Max",
+            Price = 1499,
+            Image = "iphone15promax.webp",
+            ProductColor = "تيتانيوم أسود",
+            IsAvailable = true,
+            ProductTypeId = typeIds[random.Next(typeIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
+            SpecialTagId = tagIds[random.Next(tagIds.Count)],
+            Description = "هاتف آبل الرائد بشاشة 6.7 بوصة ومعالج A17 Pro.",
+            Quantity = 20
+        },
+
+
+
+
+        new Product
+        {
+            Name = "Samsung Galaxy A26",
             Price = 1299,
             Image = "s24ultra.jpg",
             ProductColor = "رمادي تيتانيوم",
             IsAvailable = true,
             ProductTypeId = typeIds[random.Next(typeIds.Count)],
             SpecialTagId = tagIds[random.Next(tagIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
             Description = "هاتف سامسونج مع قلم S-Pen وكاميرا 200 ميجابكسل.",
             Quantity = 15
         },
+        new Product
+        {
+            Name = "Oppo Reno 15 ",
+            Price = 1199,
+            Image = "oppo.webp",
+            ProductColor = "تيتانيوم أسود",
+            IsAvailable = true,
+            ProductTypeId = typeIds[random.Next(typeIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
+            SpecialTagId = tagIds[random.Next(tagIds.Count)],
+            Description = "هاتف  الرائد بشاشة 6.7 بوصة ومعالج A17 Pro.",
+            Quantity = 20
+        },
+
 
         new Product
         {
@@ -103,6 +196,8 @@ namespace BrightMinds.Api.Extensions
             IsAvailable = true,
             ProductTypeId = typeIds[random.Next(typeIds.Count)],
             SpecialTagId = tagIds[random.Next(tagIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
             Description = "هاتف شاومي الرائد بكاميرات Leica.",
             Quantity = 18
         },
@@ -116,9 +211,41 @@ namespace BrightMinds.Api.Extensions
             IsAvailable = true,
             ProductTypeId = typeIds[random.Next(typeIds.Count)],
             SpecialTagId = tagIds[random.Next(tagIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
             Description = "أفضل تجربة أندرويد خالصة.",
             Quantity = 12
         },
+        new Product
+        {
+            Name = "iPhone 12 Pro",
+            Price = 1000,
+            Image = "iphone15promax.webp",
+            ProductColor = "تيتانيوم أسود",
+            IsAvailable = true,
+            ProductTypeId = typeIds[random.Next(typeIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
+            SpecialTagId = tagIds[random.Next(tagIds.Count)],
+            Description = "هاتف آبل الرائد بشاشة 6.7 بوصة ومعالج A17 Pro.",
+            Quantity = 20
+        },
+
+        new Product
+        {
+            Name = "iPhone 15 Pro Max",
+            Price = 1199,
+            Image = "iphone15promax.webp",
+            ProductColor = "تيتانيوم أسود",
+            IsAvailable = true,
+            ProductTypeId = typeIds[random.Next(typeIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
+            SpecialTagId = tagIds[random.Next(tagIds.Count)],
+            Description = "هاتف آبل الرائد بشاشة 6.7 بوصة ومعالج A17 Pro.",
+            Quantity = 20
+        },
+
 
         new Product
         {
@@ -129,6 +256,8 @@ namespace BrightMinds.Api.Extensions
             IsAvailable = true,
             ProductTypeId = typeIds[random.Next(typeIds.Count)],
             SpecialTagId = tagIds[random.Next(tagIds.Count)],
+            ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
             Description = "أداء فائق وشحن سريع.",
             Quantity = 17
         },
@@ -142,6 +271,8 @@ namespace BrightMinds.Api.Extensions
         ProductTypeId = 1,
         SpecialTagId = 3,
         Description = "تصميم أنيق، شاشة OLED وكاميرا أمامية قوية.",
+        ProductBrandId = brandIds[random.Next(typeIds.Count)],
+
         Quantity = 25
     },
 

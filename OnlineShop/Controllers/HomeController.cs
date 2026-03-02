@@ -17,14 +17,14 @@ namespace OnlineShop.Controllers
         //{
         //    _logger = logger;
         //}
-        private readonly ApplicationDbContext dbContext;
+        private readonly ApplicationDbContext _context;
         public HomeController(ApplicationDbContext dbContext)
         {
-            this.dbContext = dbContext;
+            this._context = dbContext;
         }
 		public IActionResult Index(int? page)
 		{
-            var product = dbContext.Products.Include(c => c.ProductType).Include(c => c.SpecialTag)
+            var product = _context.Products.Include(c => c.ProductType).Include(c => c.SpecialTag)
                 .ToList().ToPagedList(page ?? 1, 12);
 			return View(product);
 		}
@@ -36,7 +36,7 @@ namespace OnlineShop.Controllers
                 return NotFound();
 
             
-            var product = dbContext.Products
+            var product = _context.Products
                 .Include(e => e.ProductType)
                 .Include(e => e.SpecialTag)
                 .FirstOrDefault(e => e.Id == id);
@@ -57,7 +57,7 @@ namespace OnlineShop.Controllers
                 return NotFound();
 
 
-            var product = dbContext.Products
+            var product = _context.Products
                 .Include(e => e.ProductType)
                 .Include(e => e.SpecialTag)
                 .FirstOrDefault(e => e.Id == id);
@@ -124,7 +124,7 @@ namespace OnlineShop.Controllers
             }
             return View(products);
         }
-        public IActionResult Privacy()
+        public IActionResult WhoUs()
         {
             return View();
         }
@@ -133,6 +133,34 @@ namespace OnlineShop.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public async Task<IActionResult> ShowProducts(int? type,int? brand,string? name ,int pageNumber=1)
+        {
+            var query = _context.Products.AsQueryable();
+            if(type.HasValue)
+                query=query.Where(c=>c.ProductTypeId==type.Value);
+            if (brand.HasValue)
+                query = query.Where(c => c.ProductBrandId == brand.Value);
+            if(!string.IsNullOrEmpty(name))
+                query=query.Where(c=>c.Name.ToLower().Contains(name.ToLower()));
+            var products = await query
+                .Skip((pageNumber-1)*12)
+                .Take(12)
+                .Include(C=>C.SpecialTag)
+                .Include(C=>C.ProductBrand)
+                .ToListAsync();
+            var count=await query.CountAsync();
+            ViewBag.Brands = await _context.productBrands.ToListAsync();
+
+            ViewBag.Types=await _context.ProductTypes.ToListAsync();
+
+            ViewBag.currentType=type;
+            ViewBag.brand = brand;
+            ViewBag.name = name;
+            ViewBag.pageNumber = pageNumber;
+            return View(products);
+
         }
     }
 }

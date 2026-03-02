@@ -18,8 +18,12 @@ namespace OnlineShop
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+
+
+
+
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(builder.Configuration.GetConnectionString("constr")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("constr")));
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {

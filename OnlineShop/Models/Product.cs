@@ -29,7 +29,9 @@ namespace OnlineShop.Models
         public int SpecialTagId { get; set; }
         public string Description { get; set; } =string.Empty;
         public int Quantity { get; set; }   
+        public int ProductBrandId { get; set; }
         [ForeignKey("SpecialTagId")]
         public virtual SpecialTag? SpecialTag { get; set; }
+        public  ProductBrand ProductBrand { get; set; }
     }
 }

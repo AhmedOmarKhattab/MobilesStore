@@ -1,0 +1,2 @@
+D:\projects\C# projects\Core Projects\OnlineShop\OnlineShop\OnlineShop\OnlineShop\wwwroot\files\images\whous.avif
+D:\projects\C# projects\Core Projects\OnlineShop\OnlineShop\OnlineShop\OnlineShop\wwwroot\files\images\whous2.avif
