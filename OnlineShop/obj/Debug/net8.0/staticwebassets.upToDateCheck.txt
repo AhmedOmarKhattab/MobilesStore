@@ -1,5 +1,4 @@
 wwwroot\css\site.css
-wwwroot\css\_AuthSheet.css
 wwwroot\favicon.ico
 wwwroot\files\images\iphone15promax.webp
 wwwroot\files\images\nova11.jpg
@@ -2213,3 +2212,4 @@ wwwroot\lib\pdfmake\pdfmake.min.js
 wwwroot\lib\pdfmake\pdfmake.min.js.map
 wwwroot\lib\pdfmake\vfs_fonts.js
 wwwroot\lib\pdfmake\vfs_fonts.min.js
+wwwroot\css\_AuthSheet.css
