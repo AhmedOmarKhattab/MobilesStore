@@ -837,6 +837,14 @@
                             <div class="pd-info-row-val">@(Model.ProductType?.Name ?? "—")</div>
                         </div>
                     </div>
+                    <div class="pd-info-row">
+                        <div class="pd-info-row-icon"><i class="bi bi-tag-fill"></i></div>
+                        <div class="pd-info-row-body">
+                            <div class="pd-info-row-label">العلامة التجاريه </div>
+                            <div class="pd-info-row-val">@(Model.ProductBrand?.Name ?? "—")</div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- Quantity picker -->
@@ -869,6 +877,7 @@
                         <i class="bi bi-arrow-right"></i> رجوع
                     </a>
                 </div>
+                    <span class="mb-2">ملحوظة يجب عليك تسجيل الدخول اولا قبل الاضافة الى السله </span>
 
                 <!-- Guarantees -->
                 <div class="pd-guarantees">

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineShop.Data;
 using OnlineShop.Helpers;
 using OnlineShop.Models;
+using Stripe.Events;
 using System.Diagnostics;
 using X.PagedList.Extensions;
 
@@ -39,6 +40,8 @@ namespace OnlineShop.Controllers
             var product = _context.Products
                 .Include(e => e.ProductType)
                 .Include(e => e.SpecialTag)
+                .Include(e => e.ProductBrand)
+
                 .FirstOrDefault(e => e.Id == id);
 
             if (product == null)
@@ -161,6 +164,10 @@ namespace OnlineShop.Controllers
             ViewBag.pageNumber = pageNumber;
             return View(products);
 
+        }
+        public async Task<IActionResult> Compailant()
+        {
+            return View();
         }
     }
 }
