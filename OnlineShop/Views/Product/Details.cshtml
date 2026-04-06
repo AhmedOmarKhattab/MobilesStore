@@ -3,588 +3,155 @@
     ViewData["Title"] = "تفاصيل المنتج";
 }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-
-<style>
-    :root {
-        --primary: #6c63ff;
-        --primary-dark: #4f46e5;
-        --primary-soft: #ede9fe;
-        --accent: #f59e0b;
-        --success: #10b981;
-        --danger: #ef4444;
-        --ink: #0f0f17;
-        --surface: #f8f7ff;
-        --card: #ffffff;
-        --border: #e8e5f5;
-        --text: #1e1b33;
-        --muted: #7c7a93;
-        --sans: 'Cairo', sans-serif;
-        --radius: 20px;
-        --shadow: 0 4px 24px rgba(108,99,255,0.08);
-        --shadow-lg: 0 12px 48px rgba(108,99,255,0.14);
-    }
-
-    body {
-        font-family: var(--sans);
-        background: var(--surface);
-        direction: rtl;
-    }
-
-    /* ── BREADCRUMB ── */
-    .pd-breadcrumb {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 1.5rem 2rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.82rem;
-        color: var(--muted);
-    }
-
-        .pd-breadcrumb a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .pd-breadcrumb i {
-            font-size: 0.7rem;
-            color: var(--muted);
-        }
-
-    /* ── MAIN CARD ── */
-    .pd-wrapper {
-        max-width: 1100px;
-        margin: 1.5rem auto 3rem;
-        padding: 0 2rem;
-    }
-
-    .pd-card {
-        background: var(--card);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-lg);
-        overflow: hidden;
-        border: 1px solid var(--border);
-    }
-
-    .pd-grid {
-        display: grid;
-        grid-template-columns: 420px 1fr;
-    }
-
-    /* ── IMAGE PANEL ── */
-    .pd-image-panel {
-        background: linear-gradient(160deg, #f0eeff 0%, #e8f4ff 100%);
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 3rem 2rem;
-        min-height: 520px;
-        border-left: 1px solid var(--border);
-    }
-
-        .pd-image-panel::before {
-            content: '';
-            position: absolute;
-            width: 320px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(108,99,255,0.12) 0%, transparent 70%);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-    .pd-product-img {
-        position: relative;
-        z-index: 2;
-        width: 280px;
-        height: 280px;
-        object-fit: contain;
-        border-radius: 16px;
-        filter: drop-shadow(0 20px 40px rgba(108,99,255,0.2));
-        animation: floatImg 4s ease-in-out infinite;
-    }
-
-    @@keyframes floatImg {
-        0%, 100% {
-            transform: translateY(0);
-        }
-
-        50% {
-            transform: translateY(-10px);
-        }
-    }
-
-    .pd-badges {
-        position: absolute;
-        top: 1.5rem;
-        right: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        z-index: 3;
-    }
-
-    .pd-badge {
-        padding: 0.35rem 0.9rem;
-        border-radius: 50px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-    }
-
-    .badge-available {
-        background: rgba(16,185,129,0.12);
-        color: var(--success);
-        border: 1px solid rgba(16,185,129,0.25);
-    }
-
-    .badge-unavailable {
-        background: rgba(239,68,68,0.12);
-        color: var(--danger);
-        border: 1px solid rgba(239,68,68,0.25);
-    }
-
-    .badge-tag {
-        background: rgba(245,158,11,0.12);
-        color: var(--accent);
-        border: 1px solid rgba(245,158,11,0.25);
-    }
-
-    .pd-color-preview {
-        margin-top: 2rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        background: white;
-        padding: 0.75rem 1.25rem;
-        border-radius: 50px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-        border: 1px solid var(--border);
-        z-index: 2;
-    }
-
-    .color-dot {
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        border: 3px solid white;
-        box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
-    }
-
-    .color-label {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--text);
-    }
-
-    /* ── INFO PANEL ── */
-    .pd-info-panel {
-        padding: 2.5rem 2.5rem 2rem;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .pd-category-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        background: var(--primary-soft);
-        color: var(--primary);
-        font-size: 0.78rem;
-        font-weight: 700;
-        padding: 0.35rem 1rem;
-        border-radius: 50px;
-        margin-bottom: 1rem;
-        width: fit-content;
-    }
-
-    .pd-title {
-        font-size: clamp(1.6rem, 3vw, 2.2rem);
-        font-weight: 900;
-        color: var(--ink);
-        line-height: 1.3;
-        margin-bottom: 0.5rem;
-    }
-
-    .pd-rating {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-        font-size: 0.85rem;
-        color: var(--muted);
-    }
-
-        .pd-rating i {
-            color: var(--accent);
-            font-size: 0.9rem;
-        }
-
-    .pd-price-row {
-        display: flex;
-        align-items: center;
-        gap: 1.25rem;
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px dashed var(--border);
-    }
-
-    .pd-price {
-        font-size: 2.4rem;
-        font-weight: 900;
-        color: var(--primary);
-        line-height: 1;
-    }
-
-        .pd-price span {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-left: 0.2rem;
-        }
-
-    .pd-stock-pill {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.5rem 1rem;
-        border-radius: 50px;
-        font-size: 0.82rem;
-        font-weight: 700;
-    }
-
-    .stock-ok {
-        background: rgba(16,185,129,0.1);
-        color: var(--success);
-    }
-
-    .stock-low {
-        background: rgba(245,158,11,0.1);
-        color: var(--accent);
-    }
-
-    .stock-zero {
-        background: rgba(239,68,68,0.1);
-        color: var(--danger);
-    }
-
-    /* ── DETAILS GRID ── */
-    .pd-details-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        margin-bottom: 2rem;
-    }
-
-    .pd-detail-item {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 1rem 1.25rem;
-        transition: all 0.2s ease;
-    }
-
-        .pd-detail-item:hover {
-            border-color: rgba(108,99,255,0.25);
-            box-shadow: 0 4px 16px rgba(108,99,255,0.07);
-        }
-
-    .pd-detail-label {
-        font-size: 0.72rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--muted);
-        margin-bottom: 0.35rem;
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-    }
-
-        .pd-detail-label i {
-            color: var(--primary);
-            font-size: 0.85rem;
-        }
-
-    .pd-detail-value {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: var(--text);
-    }
-
-    /* description full width */
-    .pd-detail-item.full {
-        grid-column: 1 / -1;
-    }
-
-    /* ── ACTIONS ── */
-    .pd-actions {
-        display: flex;
-        gap: 0.75rem;
-        margin-top: auto;
-        padding-top: 1.5rem;
-        border-top: 1px solid var(--border);
-    }
-
-    .pd-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.875rem 1.75rem;
-        border-radius: 14px;
-        font-family: var(--sans);
-        font-size: 0.95rem;
-        font-weight: 700;
-        text-decoration: none;
-        transition: all 0.25s ease;
-        cursor: pointer;
-        border: none;
-    }
-
-    .pd-btn-primary {
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-        color: white;
-        box-shadow: 0 6px 20px rgba(108,99,255,0.35);
-        flex: 1;
-    }
-
-        .pd-btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(108,99,255,0.45);
-            color: white;
-        }
-
-    .pd-btn-outline {
-        background: white;
-        color: var(--primary);
-        border: 2px solid var(--border);
-    }
-
-        .pd-btn-outline:hover {
-            border-color: var(--primary);
-            background: var(--primary-soft);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-    /* ── BOTTOM META BAR ── */
-    .pd-meta-bar {
-        background: var(--surface);
-        border-top: 1px solid var(--border);
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        padding: 1.25rem 2.5rem;
-        gap: 1rem;
-    }
-
-    .pd-meta-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        justify-content: center;
-    }
-
-    .pd-meta-icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        background: var(--primary-soft);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--primary);
-        font-size: 1rem;
-        flex-shrink: 0;
-    }
-
-    .pd-meta-text p {
-        margin: 0;
-        font-size: 0.82rem;
-        font-weight: 700;
-        color: var(--text);
-    }
-
-    .pd-meta-text span {
-        font-size: 0.72rem;
-        color: var(--muted);
-    }
-
-    /* Mobile */
-    @@media (max-width: 900px) {
-        .pd-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .pd-image-panel {
-            min-height: 340px;
-            border-left: none;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pd-product-img {
-            width: 200px;
-            height: 200px;
-        }
-
-        .pd-meta-bar {
-            grid-template-columns: 1fr;
-            padding: 1.25rem 1.5rem;
-        }
-
-        .pd-info-panel {
-            padding: 1.75rem 1.5rem;
-        }
-
-        .pd-wrapper {
-            padding: 0 1rem;
-        }
-    }
-
-    @@media (max-width: 576px) {
-        .pd-details-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .pd-actions {
-            flex-direction: column;
-        }
-    }
-</style>
-
 <!-- Breadcrumb -->
-<div class="pd-breadcrumb">
+<nav class="apd-crumb" dir="rtl">
     <a asp-action="Index" asp-controller="Home"><i class="bi bi-house-fill"></i> الرئيسية</a>
     <i class="bi bi-chevron-left"></i>
-    <span>المنتجات</span>
+    <a asp-action="Index">المنتجات</a>
     <i class="bi bi-chevron-left"></i>
-    <span style="color:var(--text);font-weight:700">@Model.Name</span>
-</div>
+    <span class="apd-crumb-current">@Model.Name</span>
+</nav>
 
-<div class="pd-wrapper">
+<div class="apd-wrapper" dir="rtl">
     <form asp-controller="Product" asp-action="Details" method="post" enctype="multipart/form-data">
-        <div asp-validation-summary="ModelOnly" class="text-danger mb-3 px-1"></div>
+        <div asp-validation-summary="ModelOnly" class="apd-validation-error"></div>
         <input type="hidden" asp-for="Id" />
 
-        <div class="pd-card">
-            <div class="pd-grid">
+        <div class="apd-card">
+            <div class="apd-grid">
 
-                <!-- IMAGE PANEL -->
-                <div class="pd-image-panel">
-                    <div class="pd-badges">
+                <!-- ── IMAGE PANEL ── -->
+                <div class="apd-image-panel">
+                    <div class="apd-img-glow"></div>
+
+                    <div class="apd-badges">
                         @if (Model.IsAvailable)
                         {
-                            <span class="pd-badge badge-available"><i class="bi bi-check-circle-fill"></i> متوفر</span>
+                            <span class="apd-badge badge-in"><i class="bi bi-check-circle-fill"></i> متوفر</span>
                         }
                         else
                         {
-                            <span class="pd-badge badge-unavailable"><i class="bi bi-x-circle-fill"></i> غير متوفر</span>
+                            <span class="apd-badge badge-out"><i class="bi bi-x-circle-fill"></i> غير متوفر</span>
                         }
                         @if (Model.Quantity < 10 && Model.Quantity > 0)
                         {
-                            <span class="pd-badge badge-tag"><i class="bi bi-exclamation-circle-fill"></i> كمية محدودة</span>
+                            <span class="apd-badge badge-low"><i class="bi bi-fire"></i> كمية محدودة</span>
                         }
                     </div>
 
                     <img src="~/files/images/@(Model.Image ?? "noimage.png")"
                          alt="@Model.Name"
-                         class="pd-product-img"
+                         class="apd-product-img"
                          onerror="this.src='/files/images/noimage.png'" />
 
                     @if (!string.IsNullOrEmpty(Model.ProductColor))
                     {
-                        <div class="pd-color-preview">
-                            <div class="color-dot" style="background-color: @Model.ProductColor"></div>
-                            <span class="color-label">@Model.ProductColor</span>
+                        <div class="apd-color-chip">
+                            <div class="apd-color-dot" style="background-color: @Model.ProductColor"></div>
+                            <span>@Model.ProductColor</span>
                         </div>
                     }
                 </div>
 
-                <!-- INFO PANEL -->
-                <div class="pd-info-panel">
+                <!-- ── INFO PANEL ── -->
+                <div class="apd-info-panel">
 
-                    <div class="pd-category-chip">
+                    <div class="apd-type-pill">
                         <i class="bi bi-tag-fill"></i>
                         @(Model.ProductType?.Name ?? "غير محدد")
                     </div>
 
-                    <h1 class="pd-title">@Model.Name</h1>
+                    <h1 class="apd-title">@Model.Name</h1>
 
-                    <div class="pd-rating">
+                    <div class="apd-rating">
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-half"></i>
-                        <span>٤.٥ (١٢٨ تقييم)</span>
+                        <span class="apd-rating-text">٤.٥</span>
+                        <div class="apd-sep"></div>
+                        <span>١٢٨ تقييم</span>
                     </div>
 
-                    <div class="pd-price-row">
-                        <div class="pd-price">
-                            <span>$</span>@Model.Price.ToString("0.00")
+                    <!-- Price & Stock -->
+                    <div class="apd-price-row">
+                        <div class="apd-price">
+                            @Model.Price.ToString("0.00") <sup>ج.م</sup>
                         </div>
                         @if (Model.Quantity > 10)
                         {
-                            <div class="pd-stock-pill stock-ok">
+                            <div class="apd-stock-pill stock-good">
                                 <i class="bi bi-box-seam-fill"></i> @Model.Quantity في المخزون
                             </div>
                         }
                         else if (Model.Quantity > 0)
                         {
-                            <div class="pd-stock-pill stock-low">
+                            <div class="apd-stock-pill stock-low">
                                 <i class="bi bi-exclamation-triangle-fill"></i> @Model.Quantity متبقي فقط
                             </div>
                         }
                         else
                         {
-                            <div class="pd-stock-pill stock-zero">
+                            <div class="apd-stock-pill stock-none">
                                 <i class="bi bi-x-circle-fill"></i> نفد من المخزون
                             </div>
                         }
                     </div>
 
                     <!-- Details Grid -->
-                    <div class="pd-details-grid">
-                        <div class="pd-detail-item">
-                            <div class="pd-detail-label"><i class="bi bi-palette-fill"></i> اللون</div>
-                            <div class="pd-detail-value">@(Model.ProductColor ?? "—")</div>
+                    <div class="apd-details-grid">
+                        <div class="apd-detail-item">
+                            <div class="apd-detail-icon"><i class="bi bi-palette-fill"></i></div>
+                            <div>
+                                <div class="apd-detail-label">اللون</div>
+                                <div class="apd-detail-value">
+                                    @if (!string.IsNullOrEmpty(Model.ProductColor))
+                                    {
+                                        <span class="apd-inline-dot" style="background:@Model.ProductColor"></span>
+                                    }
+                                    @(Model.ProductColor ?? "—")
+                                </div>
+                            </div>
                         </div>
-                        <div class="pd-detail-item">
-                            <div class="pd-detail-label"><i class="bi bi-grid-3x3-gap-fill"></i> الفئة</div>
-                            <div class="pd-detail-value">@(Model.ProductType?.Name ?? "—")</div>
+                        <div class="apd-detail-item">
+                            <div class="apd-detail-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+                            <div>
+                                <div class="apd-detail-label">الفئة</div>
+                                <div class="apd-detail-value">@(Model.ProductType?.Name ?? "—")</div>
+                            </div>
                         </div>
-                        <div class="pd-detail-item">
-                            <div class="pd-detail-label"><i class="bi bi-boxes"></i> الكمية</div>
-                            <div class="pd-detail-value">@Model.Quantity قطعة</div>
+                        <div class="apd-detail-item">
+                            <div class="apd-detail-icon"><i class="bi bi-boxes"></i></div>
+                            <div>
+                                <div class="apd-detail-label">الكمية</div>
+                                <div class="apd-detail-value">@Model.Quantity قطعة</div>
+                            </div>
                         </div>
-                        <div class="pd-detail-item">
-                            <div class="pd-detail-label"><i class="bi bi-bookmark-star-fill"></i> التصنيف المميز</div>
-                            <div class="pd-detail-value">@(Model.SpecialTagId > 0 ? "#" + Model.SpecialTagId : "—")</div>
+                        <div class="apd-detail-item">
+                            <div class="apd-detail-icon"><i class="bi bi-award-fill"></i></div>
+                            <div>
+                                <div class="apd-detail-label">العلامة التجارية</div>
+                                <div class="apd-detail-value">@(Model.ProductBrand?.Name ?? "—")</div>
+                            </div>
                         </div>
-                        <div class="pd-detail-item full">
-                            <div class="pd-detail-label"><i class="bi bi-card-text"></i> الوصف</div>
-                            <div class="pd-detail-value" style="font-weight:500;line-height:1.7;color:var(--muted)">
-                                @(string.IsNullOrEmpty(Model.Description) ? "لا يوجد وصف متاح لهذا المنتج." : Model.Description)
+                        <div class="apd-detail-item apd-detail-full">
+                            <div class="apd-detail-icon"><i class="bi bi-card-text"></i></div>
+                            <div style="flex:1">
+                                <div class="apd-detail-label">الوصف</div>
+                                <div class="apd-detail-value apd-desc-val">
+                                    @(string.IsNullOrEmpty(Model.Description) ? "لا يوجد وصف متاح لهذا المنتج." : Model.Description)
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Actions -->
-                    <div class="pd-actions">
-                        <a asp-action="Edit" asp-route-id="@Model.Id" class="pd-btn pd-btn-primary">
+                    <div class="apd-actions">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="apd-btn apd-btn-edit">
                             <i class="bi bi-pencil-square"></i> تعديل المنتج
                         </a>
-                        <a asp-action="Index" class="pd-btn pd-btn-outline">
+                        <a asp-action="Index" class="apd-btn apd-btn-back">
                             <i class="bi bi-arrow-right"></i> العودة للقائمة
                         </a>
                     </div>
@@ -593,24 +160,24 @@
             </div>
 
             <!-- Meta Bar -->
-            <div class="pd-meta-bar">
-                <div class="pd-meta-item">
-                    <div class="pd-meta-icon"><i class="bi bi-truck"></i></div>
-                    <div class="pd-meta-text">
+            <div class="apd-meta-bar">
+                <div class="apd-meta-item">
+                    <div class="apd-meta-icon">🚚</div>
+                    <div class="apd-meta-text">
                         <p>شحن سريع</p>
                         <span>توصيل خلال ٢-٥ أيام عمل</span>
                     </div>
                 </div>
-                <div class="pd-meta-item">
-                    <div class="pd-meta-icon"><i class="bi bi-shield-check"></i></div>
-                    <div class="pd-meta-text">
+                <div class="apd-meta-item">
+                    <div class="apd-meta-icon">🛡️</div>
+                    <div class="apd-meta-text">
                         <p>ضمان الجودة</p>
-                        <span>مع كل منتج ضمان سنة كاملة</span>
+                        <span>ضمان سنة كاملة على كل منتج</span>
                     </div>
                 </div>
-                <div class="pd-meta-item">
-                    <div class="pd-meta-icon"><i class="bi bi-arrow-counterclockwise"></i></div>
-                    <div class="pd-meta-text">
+                <div class="apd-meta-item">
+                    <div class="apd-meta-icon">↩️</div>
+                    <div class="apd-meta-text">
                         <p>إرجاع مجاني</p>
                         <span>خلال ٣٠ يوماً من الاستلام</span>
                     </div>
@@ -626,3 +193,526 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<style>
+    /*
+         * Inherits from Index.cshtml (shared layout):
+         * --orange, --pink, --yellow, --blue, --purple, --green,
+         * --light-bg, --text, --muted, --bounce
+         * Fonts: Cairo, Tajawal, Fredoka One  |  Bootstrap Icons
+         */
+
+    /* ── BREADCRUMB ── */
+    .apd-crumb {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1.5rem 2rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--muted);
+        flex-wrap: wrap;
+    }
+
+        .apd-crumb a {
+            color: var(--orange);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.2s;
+        }
+
+            .apd-crumb a:hover {
+                color: var(--pink);
+            }
+
+        .apd-crumb > i {
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
+    .apd-crumb-current {
+        color: var(--text);
+        font-weight: 800;
+    }
+
+    /* ── WRAPPER ── */
+    .apd-wrapper {
+        max-width: 1100px;
+        margin: 1.5rem auto 4rem;
+        padding: 0 2rem;
+    }
+
+    .apd-validation-error {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #ef4444;
+        margin-bottom: 1rem;
+    }
+
+    /* ── CARD ── */
+    .apd-card {
+        background: white;
+        border-radius: 28px;
+        box-shadow: 0 12px 48px rgba(255,107,53,0.1);
+        overflow: hidden;
+        border: 2px solid rgba(255,107,53,0.1);
+    }
+
+    .apd-grid {
+        display: grid;
+        grid-template-columns: 400px 1fr;
+    }
+
+    /* ── IMAGE PANEL ── */
+    .apd-image-panel {
+        background: linear-gradient(160deg, #fff8f0 0%, #fff0e0 100%);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2rem;
+        min-height: 520px;
+        border-left: 2px dashed rgba(255,107,53,0.15);
+    }
+
+    .apd-img-glow {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
+
+    .apd-badges {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        z-index: 3;
+    }
+
+    .apd-badge {
+        padding: 0.35rem 0.9rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 800;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    .badge-in {
+        background: linear-gradient(135deg,#d1fae5,#a7f3d0);
+        color: #065f46;
+    }
+
+    .badge-out {
+        background: linear-gradient(135deg,#fee2e2,#fecaca);
+        color: #991b1b;
+    }
+
+    .badge-low {
+        background: linear-gradient(135deg,#fde68a,#fbbf24);
+        color: #78350f;
+    }
+
+    .apd-product-img {
+        position: relative;
+        z-index: 2;
+        width: 280px;
+        height: 280px;
+        object-fit: contain;
+        border-radius: 20px;
+        filter: drop-shadow(0 20px 40px rgba(255,107,53,0.2));
+        animation: floatImg 4s ease-in-out infinite;
+        transition: transform 0.4s var(--bounce);
+    }
+
+    .apd-image-panel:hover .apd-product-img {
+        transform: scale(1.05) rotate(2deg);
+    }
+
+    @@keyframes floatImg {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-12px);
+        }
+    }
+
+    .apd-color-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: white;
+        border-radius: 50px;
+        padding: 0.5rem 1.1rem 0.5rem 0.65rem;
+        border: 2px solid rgba(255,107,53,0.15);
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-top: 1.75rem;
+        z-index: 2;
+        box-shadow: 0 4px 14px rgba(255,107,53,0.1);
+    }
+
+    .apd-color-dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+        flex-shrink: 0;
+    }
+
+    /* ── INFO PANEL ── */
+    .apd-info-panel {
+        padding: 2.5rem 2.5rem 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .apd-type-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: linear-gradient(135deg, #fde68a, #fbbf24);
+        color: #78350f;
+        font-size: 0.8rem;
+        font-weight: 800;
+        padding: 0.4rem 1rem;
+        border-radius: 50px;
+        margin-bottom: 1rem;
+        width: fit-content;
+    }
+
+    .apd-title {
+        font-family: 'Fredoka One', 'Cairo', cursive;
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 900;
+        color: var(--text);
+        line-height: 1.25;
+        margin-bottom: 0.75rem;
+    }
+
+    .apd-rating {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+        font-weight: 600;
+        flex-wrap: wrap;
+    }
+
+        .apd-rating .bi-star-fill,
+        .apd-rating .bi-star-half {
+            color: var(--yellow);
+            font-size: 0.9rem;
+        }
+
+    .apd-rating-text {
+        color: var(--text);
+        font-weight: 800;
+    }
+
+    .apd-sep {
+        width: 1px;
+        height: 14px;
+        background: #d1d5db;
+    }
+
+    /* Price row */
+    .apd-price-row {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px dashed rgba(255,107,53,0.12);
+    }
+
+    .apd-price {
+        font-family: 'Fredoka One', 'Cairo', cursive;
+        font-size: 2.4rem;
+        color: var(--orange);
+        line-height: 1;
+        display: flex;
+        align-items: baseline;
+        gap: 0.2rem;
+    }
+
+        .apd-price sup {
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 800;
+        }
+
+    .apd-stock-pill {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.82rem;
+        font-weight: 800;
+    }
+
+    .stock-good {
+        background: #d1fae5;
+        color: #065f46;
+    }
+
+    .stock-low {
+        background: #fde68a;
+        color: #78350f;
+    }
+
+    .stock-none {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    /* Details grid */
+    .apd-details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.85rem;
+        margin-bottom: 2rem;
+    }
+
+    .apd-detail-item {
+        background: var(--light-bg);
+        border: 2px solid rgba(255,107,53,0.1);
+        border-radius: 16px;
+        padding: 1rem 1.1rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        transition: border-color 0.2s, transform 0.2s var(--bounce);
+    }
+
+        .apd-detail-item:hover {
+            border-color: var(--yellow);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(255,107,53,0.08);
+        }
+
+    .apd-detail-full {
+        grid-column: 1 / -1;
+        align-items: flex-start;
+    }
+
+    .apd-detail-icon {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        border-radius: 11px;
+        background: linear-gradient(135deg, #fde68a, #fbbf24);
+        color: #78350f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
+    }
+
+    .apd-detail-label {
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--muted);
+        margin-bottom: 0.3rem;
+    }
+
+    .apd-detail-value {
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .apd-desc-val {
+        font-weight: 600 !important;
+        line-height: 1.75;
+        color: var(--muted) !important;
+        font-size: 0.9rem !important;
+    }
+
+    .apd-inline-dot {
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        border: 2px solid white;
+        box-shadow: 0 0 0 1.5px rgba(0,0,0,0.12);
+        flex-shrink: 0;
+    }
+
+    /* Actions */
+    .apd-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: auto;
+        padding-top: 1.5rem;
+        border-top: 2px dashed rgba(255,107,53,0.1);
+    }
+
+    .apd-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.75rem;
+        border-radius: 50px;
+        font-family: 'Cairo', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 800;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: transform 0.25s var(--bounce), box-shadow 0.25s;
+    }
+
+    .apd-btn-edit {
+        background: linear-gradient(135deg, var(--orange), var(--pink));
+        color: white;
+        flex: 1;
+        box-shadow: 0 6px 20px rgba(255,107,53,0.35);
+    }
+
+        .apd-btn-edit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255,107,53,0.45);
+            color: white;
+        }
+
+    .apd-btn-back {
+        background: white;
+        color: var(--text);
+        border: 2.5px solid rgba(255,107,53,0.2);
+        box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    }
+
+        .apd-btn-back:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #fff8f0, #fff0e0);
+        }
+
+    /* ── META BAR ── */
+    .apd-meta-bar {
+        background: linear-gradient(135deg, #fff8f0, #fff0e0);
+        border-top: 2px dashed rgba(255,107,53,0.12);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 1.25rem 2.5rem;
+        gap: 1rem;
+    }
+
+    .apd-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        justify-content: center;
+    }
+
+    .apd-meta-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background: white;
+        border: 2px solid rgba(255,107,53,0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+        box-shadow: 0 3px 10px rgba(255,107,53,0.08);
+        transition: transform 0.2s var(--bounce);
+    }
+
+    .apd-meta-item:hover .apd-meta-icon {
+        transform: scale(1.2) rotate(-5deg);
+    }
+
+    .apd-meta-text p {
+        margin: 0;
+        font-size: 0.84rem;
+        font-weight: 800;
+        color: var(--text);
+    }
+
+    .apd-meta-text span {
+        font-size: 0.72rem;
+        color: var(--muted);
+        font-weight: 600;
+    }
+
+    /* ── RESPONSIVE ── */
+    @@media (max-width: 900px) {
+        .apd-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .apd-image-panel {
+            min-height: 340px;
+            border-left: none;
+            border-bottom: 2px dashed rgba(255,107,53,0.12);
+        }
+
+        .apd-product-img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .apd-meta-bar {
+            grid-template-columns: 1fr;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .apd-info-panel {
+            padding: 1.75rem 1.5rem;
+        }
+
+        .apd-wrapper {
+            padding: 0 1rem;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .apd-details-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .apd-actions {
+            flex-direction: column;
+        }
+
+        .apd-crumb {
+            padding: 1rem 1rem 0;
+        }
+
+        .apd-price {
+            font-size: 2rem;
+        }
+    }
+</style>

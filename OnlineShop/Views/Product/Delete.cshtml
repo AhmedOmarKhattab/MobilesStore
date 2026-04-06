@@ -1,88 +1,135 @@
 ﻿@model Product
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "حذف المنتج";
 }
 
-<h2 class="text-info">Delete Product</h2>
-<form asp-controller="Product" asp-action="Delete" method="post" enctype="multipart/form-data">
-    <div class="p-4 rounded border row">
+<style>
+    body {
+        direction: rtl;
+        text-align: right;
+    }
+
+    .card {
+        border-radius: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        border-radius: 10px;
+    }
+
+    .img-box img {
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .warning-box {
+        background: #fff3cd;
+        padding: 15px;
+        border-radius: 10px;
+        color: #856404;
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+
+<br />
+
+<h2 class="text-danger mb-4">حذف المنتج</h2>
+
+<form asp-controller="Product" asp-action="Delete" method="post">
+    <div class="card p-4 shadow-sm">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <div class="col-md-8">
-            <input type="hidden" asp-for="Id" />
+        <div class="row">
 
-            <div class="form-group row mb-3">
-                <div class="col-4"><label asp-for="Name"></label></div>
-                <div class="col-8">
-                    <input asp-for="Name" readonly="readonly" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
+            <!-- البيانات -->
+            <div class="col-md-8">
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row mb-3">
+                    <div class="col-4"><label>اسم المنتج</label></div>
+                    <div class="col-8">
+                        <input asp-for="Name" readonly class="form-control" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row mb-3">
-                <div class="col-4"><label asp-for="Price"></label></div>
-                <div class="col-8">
-                    <input asp-for="Price" readonly="readonly" class="form-control" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
+                <div class="row mb-3">
+                    <div class="col-4"><label>السعر</label></div>
+                    <div class="col-8">
+                        <input asp-for="Price" readonly class="form-control" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-4"><label asp-for="Quantity"></label></div>
-            <div class="col-8">
-                <input asp-for="Quantity" readonly="readonly" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-        </div>
-
-
-            <div class="form-group row mb-3">
-                <div class="col-4"><label asp-for="ProductColor"></label></div>
-                <div class="col-8">
-                    <input asp-for="ProductColor" readonly="readonly" class="form-control" />
-                    <span asp-validation-for="ProductColor" class="text-danger"></span>
+                <div class="row mb-3">
+                    <div class="col-4"><label>الكمية</label></div>
+                    <div class="col-8">
+                        <input asp-for="Quantity" readonly class="form-control" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row mb-3">
-                <div class="col-4"><label asp-for="ProductTypeId"></label></div>
-                <div class="col-8">
-                    @* <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select> *@
-                    <input asp-for="ProductTypeId" readonly="readonly" class="form-control" />
-                    <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+                <div class="row mb-3">
+                    <div class="col-4"><label>اللون</label></div>
+                    <div class="col-8">
+                        <input asp-for="ProductColor" readonly class="form-control" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row mb-3">
-                <div class="col-4"><label asp-for="SpecialTagId"></label></div>
-                <div class="col-8">
-                    @*  <select asp-for="SpecialTagId" asp-items="ViewBag.TagId" class="form-control"></select> *@
-                    <input asp-for="SpecialTagId" readonly="readonly" class="form-control" />
-                    <span asp-validation-for="SpecialTagId" class="text-danger"></span>
+                <div class="row mb-3">
+                    <div class="col-4"><label>نوع المنتج</label></div>
+                    <div class="col-8">
+                        <input value="@Model.ProductType?.Name" readonly class="form-control" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row mb-3">
-                <div class="col-4"><label asp-for="IsAvailable"></label></div>
-                <div class="col-8">
-                    <input asp-for="IsAvailable" readonly="readonly" type="checkbox" />
-                    <span asp-validation-for="IsAvailable" class="text-danger"></span>
+                <div class="row mb-3">
+                    <div class="col-4"><label>التصنيف</label></div>
+                    <div class="col-8">
+                        <input value="@Model.SpecialTag?.Name" readonly class="form-control" />
+                    </div>
                 </div>
+
+                <!-- ✅ Product Brand -->
+                <div class="row mb-3">
+                    <div class="col-4"><label>العلامة التجارية</label></div>
+                    <div class="col-8">
+                        <input value="@Model.ProductBrand?.Name" readonly class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-4"><label>متوفر</label></div>
+                    <div class="col-8">
+                        <input asp-for="IsAvailable" disabled type="checkbox" />
+                    </div>
+                </div>
+
+                <!-- تحذير -->
+                <div class="warning-box mt-4">
+                    هل أنت متأكد أنك تريد حذف هذا المنتج؟
+                </div>
+
+                <!-- أزرار -->
+                <div class="mt-4">
+                    <input type="submit" asp-route-id="@Model.Id" class="btn btn-danger" value="حذف" />
+                    <a asp-action="Index" class="btn btn-outline-success">العودة للقائمة</a>
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <h3>Do you want delete this product?</h3>
-                <input type="submit" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger" value="Delete"/>
-                <a asp-action="Index" class="btn btn-success">Back to List</a>
+            <!-- الصورة -->
+            <div class="col-md-4 text-center img-box">
+                <img src="~/files/images/@(Model.Image ?? "noimage.png")" width="220" class="img-thumbnail" />
+                <p class="text-muted mt-2">صورة المنتج</p>
             </div>
-        </div>
 
-        <div class="col-md-4 text-center">
-            <img src="~/files/images/@(Model.Image ?? "noimage.png")" class="img-thumbnail" width="200" />
-            <p>No Image Found</p>
         </div>
     </div>
 </form>
-
 
 @section Scripts {
     @{

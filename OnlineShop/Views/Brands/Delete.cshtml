@@ -1,18 +1,18 @@
-﻿@model ProductType
+﻿@model ProductBrand
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h2 class="text-info">حذف نوع المنتج</h2>
+<h2 class="text-info">Delete Special Tag</h2>
 
 <form asp-action="Delete" method="post">
     <div class="p-4 rounded border">
-        <input  type="hidden" asp-for="Id   "/>
+        <input type="hidden" asp-for="Id   " />
         <div asp-validation-summary="ModelOnly" class="text-danger">
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Name"></label>
+                <label>الاسم</label>
 
             </div>
             <div class="col-5">
