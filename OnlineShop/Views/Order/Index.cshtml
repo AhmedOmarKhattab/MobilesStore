@@ -15,6 +15,9 @@
             <th>Address</th>
             <th>Order Date</th>
             <th>Status</th>
+            <th>تغير الحالة</th>
+
+            <th>التفاصيل</th>
 
 
         </tr>
@@ -33,6 +36,12 @@
                     <td>@o.Address</td>
                     <td>@o.OrderDate</td>
                     <td>@o.Status</td>
+                    <td>
+                        <a asp-action="ChangeStauts" asp-controller="Order" class="btn btn-success" asp-route-id="@o.Id">
+                            <i class="fas fa-sync-alt"></i>
+
+                        </a>
+                    </td>
                     <td>
                         <a asp-action="GetDetails" asp-controller="Order" class="btn btn-success" asp-route-id="@o.Id">
                             <i class="fas fa-list"></i>

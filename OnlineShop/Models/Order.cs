@@ -24,7 +24,7 @@ namespace OnlineShop.Models
     public string Email { get; set; }
     [Required]
     public string Address { get; set; }
-    public OrderStatus Status { set; get; } 
+    public string Status { set; get; } = "قيد الانتظار";
     public DateTime OrderDate { get; set; }=DateTime.Now;
     public string? PaymentSessionId { set; get; }
     public virtual List<OrderItem> Items { get; set; }

@@ -455,12 +455,7 @@
     <header>
         <nav class="navbar navbar-expand-lg modern-navbar">
             <div class="container-fluid px-3 px-lg-4">
-                <!-- Brand -->
-                <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
-                    <i class="bi bi-shop"></i>
-                    <span class="d-none d-sm-inline">Snap Phone</span>
-                </a>
-
+             
                 <!-- Mobile Toggle -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -469,32 +464,35 @@
                 <!-- Navigation -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mt-3 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">
-                                <i class="bi bi-house-door"></i>
-                                <span>الرئيسية</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="WhoUs">
-                                <i class="bi bi-shield-check"></i>
-                                <span> من نحن</span>
-                            </a>
-                        </li>
+                        @if (role.Count == 0)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">
+                                    <i class="bi bi-house-door"></i>
+                                    <span>الرئيسية</span>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="ShowProducts">
-                                <i class="bi bi-shield-check"></i>
-                                <span>المنتجات </span>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="WhoUs">
+                                    <i class="bi bi-shield-check"></i>
+                                    <span> من نحن</span>
+                                </a>
+                            </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="ShowProducts">
+                                    <i class="bi bi-shield-check"></i>
+                                    <span>المنتجات </span>
+                                </a>
+                            </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Compailant">
                                 <i class="bi bi-shield-check"></i>
                                 <span> الشكاوي</span>
                             </a>
                         </li>
+                        }
 
 
                         @if (role.Count() > 0 && role[0] == "Admin")
@@ -531,9 +529,9 @@
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
-                                        <a class="dropdown-item" asp-controller="Account" asp-action="AssignRoleToUser">
+                                        <a class="dropdown-item" asp-controller="Complaint" asp-action="Index">
                                             <i class="bi bi-people-fill text-danger"></i>
-                                            <span>أدوار المستخدمين</span>
+                                            <span> الشكاوي</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -544,6 +542,8 @@
                     <!-- Right Side Nav -->
                     <ul class="navbar-nav gap-2">
                         <!-- Cart -->
+                        @if(role.Count==0)
+                        {
                         <li class="nav-item">
                             <a class="nav-link cart-link" asp-controller="Home" asp-action="Cart">
                                 <i class="bi bi-cart3 fs-4"></i>
@@ -553,7 +553,7 @@
                                 }
                             </a>
                         </li>
-
+                        }
                         @if (User.Identity?.IsAuthenticated ?? false)
                         {
                             <li class="nav-item dropdown">
@@ -589,12 +589,24 @@
                         }
                     </ul>
                 </div>
+                <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-shop"></i>
+                    <span class="d-none d-sm-inline">Snap Phone</span>
+                </a>
+
             </div>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main role="main">
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success text-center">
+                @TempData["Success"]
+            </div>
+        }
+
         @RenderBody()
     </main>
 

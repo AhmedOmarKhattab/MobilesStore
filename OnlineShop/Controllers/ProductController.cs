@@ -24,23 +24,25 @@ namespace OnlineShop.Controllers
         }
         public IActionResult Index()
         {
-            return View(_db.Products.Include(e => e.ProductType)
+            return View(_db.Products.
+                Include(e => e.ProductType).
+                Include(e => e.ProductBrand)
+
                 .Include(e => e.SpecialTag)
                 .ToList());
         }
 
         [HttpPost]
-        public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
+        public IActionResult Index(string name)
         {
-            var products = _db.Products.Include(e => e.ProductType)
+            var products = _db.Products
+                .Include(e => e.ProductType)
+                .Include(e => e.ProductBrand)
+
                 .Include(e => e.SpecialTag)
-                .Where(e => e.Price >= lowAmount && e.Price <= largeAmount)
+                .Where(e => e.Name.ToLower().Contains(name.ToLower()))
                 .ToList();
-            if(lowAmount == null || largeAmount == null)
-            {
-                products = _db.Products.Include(e => e.ProductType)
-                    .Include(e => e.SpecialTag).ToList();
-            }
+            
             return View(products);
         }
         //Get Create method

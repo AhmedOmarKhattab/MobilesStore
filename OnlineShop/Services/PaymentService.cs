@@ -89,7 +89,6 @@ namespace OnlineShop.Services
                 .FirstOrDefaultAsync();
             if (order == null)
                 return null;
-            order.Status = status;
             _context.Update(order);
             var userId = _http.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
              await _context.SaveChangesAsync();

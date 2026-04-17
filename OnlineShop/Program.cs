@@ -41,7 +41,6 @@ namespace OnlineShop
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
-            Stripe.StripeConfiguration.ApiKey=builder.Configuration["StripeSetting:SecretKey"]; // Your secret key
 
             builder.Services.AddScoped<IPaymentService, PaymentService>();
 

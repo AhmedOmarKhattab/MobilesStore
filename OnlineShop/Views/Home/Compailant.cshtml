@@ -1,4 +1,4 @@
-﻿@model RegisterModel
+﻿@model Complaint
 @{
     ViewData["Title"] = "إنشاء حساب";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -194,44 +194,47 @@
             </div>
         </div>
 
-        <form class="complaint-form">
+        <form asp-action="Create" asp-controller="Complaint" method="post" class="complaint-form">
+
             <div class="form-group">
                 <label>الاسم الكامل</label>
-                <input type="text" class="form-control" placeholder="أدخل اسمك هنا" required>
+                <input asp-for="UserName" class="form-control" placeholder="أدخل اسمك هنا" required>
             </div>
 
             <div class="row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                 <div class="form-group">
                     <label>رقم الهاتف</label>
-                    <input type="tel" class="form-control" placeholder="05xxxxxxxx" required>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="05xxxxxxxx" required>
                 </div>
                 <div class="form-group">
-                    <label>رقم الطلب (إن وجد)</label>
-                    <input type="text" class="form-control" placeholder="#12345">
+                    <label>البريد الإلكتروني</label>
+                    <input asp-for="UserEmail" class="form-control" placeholder="example@email.com" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label>نوع الشكوى</label>
-                <select class="form-control" required>
-                    <option value="" disabled selected>اختر نوع المشكلة</option>
-                    <option value="delivery">مشكلة في التوصيل</option>
-                    <option value="product">عطل في الجهاز / جودة المنتج</option>
-                    <option value="service">سوء خدمة العملاء</option>
-                    <option value="website">مشكلة تقنية في الموقع</option>
-                    <option value="other">أخرى</option>
+                <select asp-for="Type" class="form-control" required>
+                    <option value="">اختر نوع المشكلة</option>
+                    <option value="مشكلة في التوصيل">مشكلة في التوصيل</option>
+                    <option value="جودة المنتج">عطل في المنتج</option>
+                    <option value="خدمة العملاء">سوء خدمة العملاء</option>
+                    <option value="مشكلة تقنية">مشكلة تقنية</option>
+                    <option value="أخرى">أخرى</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label>تفاصيل الشكوى</label>
-                <textarea class="form-control" rows="4" placeholder="يرجى شرح المشكلة بوضوح لنتمكن من مساعدتك..." required></textarea>
+                <textarea asp-for="Description" class="form-control" rows="4"
+                          placeholder="يرجى شرح المشكلة..." required></textarea>
             </div>
 
             <button type="submit" class="btn-submit">
                 إرسال الشكوى
                 <i class="bi bi-send-fill"></i>
             </button>
+
         </form>
     </div>
 </div>

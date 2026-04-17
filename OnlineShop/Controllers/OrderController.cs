@@ -35,6 +35,17 @@ namespace OnlineShop.Controllers
             return View();
         }
 
+        public IActionResult Pay()
+        {
+            return View("Pay");
+        }
+        [HttpPost]
+        public IActionResult Success()
+        {
+            TempData["Success"] = "تم  بنجاح ✅";
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
         public async Task<IActionResult> Checkout(Order order)
         {
@@ -54,7 +65,7 @@ namespace OnlineShop.Controllers
                 }
                 await UpdateProductQuantity(products);
             order.OrderNo = GetOrderNo();
-            order.Status=OrderStatus.Pending;
+            order.Status="تم التاكيد";
             order.UserName = User.Identity.Name;
            
            await _context.orders.AddAsync(order);
@@ -62,9 +73,8 @@ namespace OnlineShop.Controllers
 
 
             await _context.SaveChangesAsync();
-         var stripeUrl=  await _paymentService.CreatePaymentSession(order);
-            HttpContext.Session.Set("products",new List<Product>());
-          return Redirect(stripeUrl);
+            return RedirectToAction("Pay");
+
         }
         public async Task UpdateProductQuantity(List<Product> products)
         {
@@ -92,6 +102,14 @@ namespace OnlineShop.Controllers
             return View(order); 
         }
 
+        public async Task<IActionResult> ChangeStauts(int id)
+        {
+            var order = await _context.orders.FindAsync(id);
+            order.Status = "تم التاكيد";
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "تم  بنجاح ✅";
+            return RedirectToAction("Index");
+        }
 
 
     }
