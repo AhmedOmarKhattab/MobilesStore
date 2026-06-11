@@ -1,0 +1,343 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\.NET\\MobilesStore\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\views\\specialtag\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\specialtag\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\views\\producttype\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\producttype\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\views\\shared\\_buttonpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\shared\\_buttonpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\views\\product\\partialview\\createeditpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\product\\partialview\\createeditpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\views\\home\\compailant.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\home\\compailant.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\data\\applicationdbcontext .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\data\\applicationdbcontext .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\controllers\\complaintcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\controllers\\complaintcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\extensions\\dataseeding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\extensions\\dataseeding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\dataaccess\\migrations\\20260416233853_edit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\dataaccess\\migrations\\20260416233853_edit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\.net\\mobilesstore\\onlineshop\\dataaccess\\migrations\\20260417191319_edit234.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\dataaccess\\migrations\\20260417191319_edit234.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Models\\Product.cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Models\\Product.cs",
+              "RelativeToolTip": "OnlineShop\\Models\\Product.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAqwCIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:48:17.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\SpecialTag\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineShop\\Views\\SpecialTag\\Index.cshtml",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\SpecialTag\\Index.cshtml",
+              "RelativeToolTip": "OnlineShop\\Views\\SpecialTag\\Index.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACEAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-11T10:41:42.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\ProductType\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineShop\\Views\\ProductType\\Index.cshtml",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\ProductType\\Index.cshtml",
+              "RelativeToolTip": "OnlineShop\\Views\\ProductType\\Index.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA4AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-11T10:41:42.991Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Product\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineShop\\Views\\Product\\Index.cshtml",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Product\\Index.cshtml",
+              "RelativeToolTip": "OnlineShop\\Views\\Product\\Index.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABgAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-11T10:41:42.998Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "OnlineShop\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAlwFUAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:41:43Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Services\\PaymentService.cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Services\\PaymentService.cs",
+              "RelativeToolTip": "OnlineShop\\Services\\PaymentService.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAywFsAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:41:43.001Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Models\\Order.cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Models\\Order.cs",
+              "RelativeToolTip": "OnlineShop\\Models\\Order.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAUwBoAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:41:43.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Order\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineShop\\Views\\Order\\Index.cshtml",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Order\\Index.cshtml",
+              "RelativeToolTip": "OnlineShop\\Views\\Order\\Index.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAmwBEAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-11T10:41:43.007Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "OnlineShop\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "OnlineShop\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAACACAAAAAAAAAAA0wCoCAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-11T10:41:43.008Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "OnlineShop\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAwwHAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:41:43.01Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "20260417191319_Edit234.cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\DataAccess\\Migrations\\20260417191319_Edit234.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\DataAccess\\Migrations\\20260417191319_Edit234.cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\DataAccess\\Migrations\\20260417191319_Edit234.cs",
+              "RelativeToolTip": "OnlineShop\\DataAccess\\Migrations\\20260417191319_Edit234.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:41:43.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Program.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Program.cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Program.cs",
+              "RelativeToolTip": "OnlineShop\\Program.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAA0wCsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:41:43.037Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ComplaintController.cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Controllers\\ComplaintController.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Controllers\\ComplaintController.cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Controllers\\ComplaintController.cs",
+              "RelativeToolTip": "OnlineShop\\Controllers\\ComplaintController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAIBAwBgAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:41:43.038Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\appsettings.json",
+              "RelativeDocumentMoniker": "OnlineShop\\appsettings.json",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\appsettings.json",
+              "RelativeToolTip": "OnlineShop\\appsettings.json",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAzwA0AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-06-11T10:41:43.04Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ApplicationDbContext .cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Data\\ApplicationDbContext .cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Data\\ApplicationDbContext .cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Data\\ApplicationDbContext .cs",
+              "RelativeToolTip": "OnlineShop\\Data\\ApplicationDbContext .cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA0wBIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:41:43.041Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "20260416233853_Edit.cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\DataAccess\\Migrations\\20260416233853_Edit.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\DataAccess\\Migrations\\20260416233853_Edit.cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\DataAccess\\Migrations\\20260416233853_Edit.cs",
+              "RelativeToolTip": "OnlineShop\\DataAccess\\Migrations\\20260416233853_Edit.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:41:43.043Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_ButtonPartial.cshtml",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Shared\\_ButtonPartial.cshtml",
+              "RelativeDocumentMoniker": "OnlineShop\\Views\\Shared\\_ButtonPartial.cshtml",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Shared\\_ButtonPartial.cshtml",
+              "RelativeToolTip": "OnlineShop\\Views\\Shared\\_ButtonPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-11T10:41:43.044Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CreateEditPartialView.cshtml",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Product\\PartialView\\CreateEditPartialView.cshtml",
+              "RelativeDocumentMoniker": "OnlineShop\\Views\\Product\\PartialView\\CreateEditPartialView.cshtml",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Product\\PartialView\\CreateEditPartialView.cshtml",
+              "RelativeToolTip": "OnlineShop\\Views\\Product\\PartialView\\CreateEditPartialView.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-11T10:41:43.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Compailant.cshtml",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Home\\Compailant.cshtml",
+              "RelativeDocumentMoniker": "OnlineShop\\Views\\Home\\Compailant.cshtml",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Views\\Home\\Compailant.cshtml",
+              "RelativeToolTip": "OnlineShop\\Views\\Home\\Compailant.cshtml",
+              "ViewState": "AgIAALIAAAAAAAAAAAAmwPEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-11T10:41:43.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DataSeeding.cs",
+              "DocumentMoniker": "D:\\.NET\\MobilesStore\\OnlineShop\\Extensions\\DataSeeding.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Extensions\\DataSeeding.cs",
+              "ToolTip": "D:\\.NET\\MobilesStore\\OnlineShop\\Extensions\\DataSeeding.cs",
+              "RelativeToolTip": "OnlineShop\\Extensions\\DataSeeding.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAIA2wCYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T10:41:43.049Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

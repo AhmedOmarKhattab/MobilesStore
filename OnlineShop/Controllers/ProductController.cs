@@ -51,6 +51,8 @@ namespace OnlineShop.Controllers
         {
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "Name");
             ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
+            ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
+
             return View();
         }
 
@@ -67,6 +69,8 @@ namespace OnlineShop.Controllers
                     ViewBag.messege = "This product already exist";
                     ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "Name");
                     ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
+                    ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
+
                     return View(product);
                 }
                     
@@ -89,6 +93,8 @@ namespace OnlineShop.Controllers
             }
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "Name");
             ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
+            ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
+
             return View(product);
         }
 
@@ -110,6 +116,7 @@ namespace OnlineShop.Controllers
             // Populate the dropdown lists for ProductType and SpecialTag
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "Name");
             ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
+            ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
 
             // Pass the product to the view
             return View(product);
@@ -137,6 +144,8 @@ namespace OnlineShop.Controllers
             // Populate the dropdown lists again if the model is invalid
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "Name");
             ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
+            ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
+
             return View(product);
         }
 

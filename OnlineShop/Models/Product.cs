@@ -32,6 +32,6 @@ namespace OnlineShop.Models
         public int ProductBrandId { get; set; }
         [ForeignKey("SpecialTagId")]
         public virtual SpecialTag? SpecialTag { get; set; }
-        public  ProductBrand ProductBrand { get; set; }
+        public  ProductBrand? ProductBrand { get; set; }
     }
 }
