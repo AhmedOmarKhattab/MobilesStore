@@ -12,7 +12,7 @@ using OnlineShop.Services;
 
 namespace OnlineShop.Controllers
 {
-    [Authorize]
+
     public class OrderController : Controller
     {
         private ApplicationDbContext _context;

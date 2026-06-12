@@ -1,0 +1,214 @@
+﻿@using System.Net.Http
+@using OnlineShop.Helpers
+@using Microsoft.AspNetCore.Http
+
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@{
+    int count = 0;
+    List<Product> products = HttpContextAccessor.HttpContext.Session
+        .Get<List<Product>>("products");
+
+    if (products == null)
+    {
+        products = new List<Product>();
+    }
+    count = products.Count();
+
+    var Name = User.Identity?.Name ?? "زائر";
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - متجرنا</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables-buttons/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="~/lib/alertifyjs/css/alertify.min.css" />
+    <link rel="stylesheet" href="~/lib/alertifyjs/css/themes/default.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== NAVBAR HEIGHT ===== */
+        .modern-navbar {
+            min-height: 72px;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
+        /* ===== NAVBAR NAV LINKS ===== */
+        .navbar-nav .nav-link {
+            padding: 0.5rem 0.85rem;
+            border-radius: 6px;
+            position: relative;
+            transition: background 0.2s, color 0.2s;
+        }
+
+            .navbar-nav .nav-link:hover {
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            .navbar-nav .nav-link.active {
+                background: rgba(99, 102, 241, 0.15);
+                color: #fff;
+                font-weight: 600;
+            }
+
+                /* Active underline indicator — RTL aware (right/left swapped) */
+                .navbar-nav .nav-link.active::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    right: 12px;
+                    left: 12px;
+                    height: 2px;
+                    border-radius: 2px;
+                    background: #818cf8;
+                }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg modern-navbar">
+            <div class="container-fluid px-3 px-lg-4">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-1">
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="ProductType" asp-action="Index">
+                                <i class="bi bi-tags-fill"></i>
+                                <span>أنواع المنتجات</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="SpecialTag" asp-action="Index">
+                                <i class="bi bi-bookmark-star-fill"></i>
+                                <span>التصنيفات المميزة</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Order" asp-action="Index">
+                                <i class="bi bi-receipt"></i>
+                                <span>الطلبات</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Product" asp-action="Index">
+                                <i class="bi bi-box-seam-fill"></i>
+                                <span>المنتجات</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Complaint" asp-action="Index">
+                                <i class="bi bi-people-fill"></i>
+                                <span>الشكاوي</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success text-center">
+                @TempData["Success"]
+            </div>
+        }
+
+        @RenderBody()
+    </main>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/lib/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/lib/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/lib/jszip/jszip.min.js"></script>
+    <script src="~/lib/pdfmake/pdfmake.min.js"></script>
+    <script src="~/lib/pdfmake/vfs_fonts.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.modern-navbar');
+            navbar.style.boxShadow = window.pageYOffset > 50
+                ? '0 10px 30px rgba(99, 102, 241, 0.3)'
+                : '0 4px 20px rgba(99, 102, 241, 0.2)';
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.navbar-nav a:not(.dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse && window.innerWidth < 992) bsCollapse.hide();
+            });
+        });
+
+        // Newsletter form
+        document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('شكراً على اشتراكك! تحقق من بريدك الإلكتروني للتأكيد.');
+                this.reset();
+            }
+        });
+
+        // FIX: Active nav link — controller-aware, case-insensitive
+        const currentPath = window.location.pathname.toLowerCase();
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            const href = link.getAttribute('href')?.toLowerCase();
+            if (href && (currentPath === href || currentPath.startsWith(href + '/'))) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
